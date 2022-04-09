@@ -42,5 +42,5 @@ const seedDB = async () => {
       price INTEGER
     );
   `);
-}
+};
 seedDB();
