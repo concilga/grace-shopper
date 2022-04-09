@@ -109,12 +109,3 @@ async function createInitialBeers() {
     const beers = await Promise.all(
       beersToCreate.map(getBeerSeed())
     );
-    console.log("activities created:");
-    //console.log(activities);
-    console.log("Finished creating activities!");
-  } catch (error) {
-    console.error("Error creating activities!");
-    throw error;
-  }
-}
-
