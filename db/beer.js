@@ -10,7 +10,6 @@ async function createBeer({
   brewery,
   style,
   price,
-  score,
 }) {
   try {
     const {

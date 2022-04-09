@@ -35,12 +35,11 @@ user table: id, username(string), password(string), cartCheck(boolean)
 
 cart:
 cart table: id, userId, isPurchased
+1. createCart
 1. getCartById
 2. getCartByUserId
-3. editTotalPrice
+3. getTotalPrice * 
 5. closeCart
-6. getBeersFromCart
-7. createCart *
 
 beers_users
 tabel: id, userId, beerId, favorite, purchased, score
@@ -50,6 +49,9 @@ tabel: id, userId, beerId, favorite, purchased, score
 
 cart_beers 
 table: id, cartId, beerId, quantity, price
-1. createCart_beers
-5. addBeerToCart *
-4. removeBeerFromCart *
+2. changeBeerQuantity
+3. addBeertoCart
+4. removeBeerCart
+4. getCartBeerById
+5. getCartBeersByCartId
+6. getCartBeersByBeerId
