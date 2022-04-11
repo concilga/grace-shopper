@@ -109,6 +109,7 @@ async function createInitialBeers() {
     const beers = await Promise.all(
       beersToCreate.map(getBeerSeed())
     );
+
     console.log("beers created:");
     console.log(beers);
     console.log("Finished creating beers!");
@@ -269,4 +270,3 @@ async function createInitialuserBeers() {
     throw error;
   }
 }
-
