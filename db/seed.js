@@ -10,7 +10,7 @@ const dropTables = async () => {
       DROP TABLE IF EXISTS beers;
       DROP TABLE IF EXISTS users;
       DROP TABLE IF EXISTS carts;
-      DROP TABLE IF EXISTS beers_users;
+      DROP TABLE IF EXISTS user_beers;
       DROP TABLE IF EXISTS carts_beers;
     `)
     console.log("Finished dropping tables!");
@@ -44,7 +44,7 @@ async function createTables() {
         "isPurchased" BOOLEAN DEFAULT false
       );
       
-      beers_users(
+      user_beers(
         id SERIAL PRIMARY KEY,
         "userId" INTEGER REFERENCES users(id),
         "beerId" INTEGER REFERENCES beers(id),
@@ -109,11 +109,163 @@ async function createInitialBeers() {
     const beers = await Promise.all(
       beersToCreate.map(getBeerSeed())
     );
-    console.log("activities created:");
-    //console.log(activities);
-    console.log("Finished creating activities!");
+    console.log("beers created:");
+    console.log(beers);
+    console.log("Finished creating beers!");
   } catch (error) {
-    console.error("Error creating activities!");
+    console.error("Error creating beers!");
+    throw error;
+  }
+}
+
+async function createInitialCarts() {
+  console.log("Starting to create Carts...");
+  try {
+    const cartsToCreate = [
+      { 
+        userId: 1,
+        isPurchased: false
+      },
+      { 
+        userId: 1,
+        isPurchased: true
+      },
+      { 
+        userId: 2,
+        isPurchased: false
+      },
+      { 
+        userId: 2,
+        isPurchased: false
+      },
+      { 
+        userId: 3,
+        isPurchased: false
+      },
+      { 
+        userId: 3,
+        isPurchased: true
+      },
+    ];
+    const carts = await Promise.all(cartsToCreate.map(createCart));
+    console.log("Carts created:");
+    console.log(carts);
+    console.log("Finished creating Carts!");
+  } catch (error) {
+    console.error("Error creating Carts!")
+    throw error;
+  }
+}
+
+async function createInitialuserBeers() {
+  console.log("Starting to create userBeers...");
+  try {
+    const usersBeersToCreate = [
+      { 
+        userId: 1,
+        beerId: 3,
+        favorite: false,
+        purchased: true,
+        score: 75
+      },
+      { 
+        userId: 1,
+        beerId: 7,
+        favorite: true,
+        purchased: true,
+        score: 95
+      },
+      { 
+        userId: 1,
+        beerId: 13,
+        favorite: true,
+        purchased: false,
+        score: null
+      },
+      { 
+        userId: 1,
+        beerId: 10,
+        favorite: true,
+        purchased: true,
+        score: 90
+      },
+      { 
+        userId: 2,
+        beerId: 24,
+        favorite: false,
+        purchased: true,
+        score: 50
+      },
+      { 
+        userId: 2,
+        beerId: 2,
+        favorite: true,
+        purchased: true,
+        score: 87
+      },
+      { 
+        userId: 2,
+        beerId: 15,
+        favorite: true,
+        purchased: false,
+        score: null
+      },
+      { 
+        userId: 3,
+        beerId: 6,
+        favorite: true,
+        purchased: false,
+        score: null
+      },
+      { 
+        userId: 3,
+        beerId: 12,
+        favorite: false,
+        purchased: true,
+        score: 85
+      },
+      { 
+        userId: 3,
+        beerId: 14,
+        favorite: true,
+        purchased: true,
+        score: 97
+      },
+      { 
+        userId: 3,
+        beerId: 19,
+        favorite: true,
+        purchased: true,
+        score: 93
+      },
+      { 
+        userId: 4,
+        beerId: 22,
+        favorite: false,
+        purchased: true,
+        score: 91
+      },
+      { 
+        userId: 4,
+        beerId: 4,
+        favorite: true,
+        purchased: false,
+        score: null
+      },
+      { 
+        userId: 4,
+        beerId: 20,
+        favorite: true,
+        purchased: false,
+        score: null
+      },
+    ];
+    const userBeers = await Promise.all(userBeersToCreate.map(createUserBeers));
+    console.log("User Beers created:");
+    console.log(userBeers);
+    console.log("Finished creating User Beers!");
+  } catch (error) {
+    console.error("Error creating UserBeers!")
     throw error;
   }
 }

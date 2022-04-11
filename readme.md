@@ -39,13 +39,20 @@ cart table: id, userId, isPurchased
 1. getCartById
 2. getCartByUserId
 3. getTotalPrice * 
+4. editCart
 5. closeCart
 
-beers_users
+user_beers
 tabel: id, userId, beerId, favorite, purchased, score
 1. createBeer_users
-5. addBeerToUser *
-1. scoreBeer *
+5. favoriteBeer*
+1. scoreBeer*
+2. markBeerAsPurchased
+3. getABeersScore
+4. getUserFavorites
+5. getUserPurchased
+
+
 
 cart_beers 
 table: id, cartId, beerId, quantity, price
