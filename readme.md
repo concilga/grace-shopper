@@ -13,6 +13,7 @@ possible tables to add: beer_carts(reording beer and purchance data(top ten), pu
 
 beer functions: 
 beer table: id, name, description, image, brewery, style, abv, price, avgScore
+db functions:
 1. createBeer 
 2. deleteBeer
 3. editBeer
@@ -23,6 +24,12 @@ beer table: id, name, description, image, brewery, style, abv, price, avgScore
 11. getAllBeers
 12. getBeersByUser
 13. averageScore * 
+api:
+1. get allBeers
+2. post createBeer
+3. delete deleteBeer
+4. patch editBeer
+5. get beerById
 
 user:
 user table: id, username(string), password(string), cartCheck(boolean)
@@ -32,33 +39,64 @@ user table: id, username(string), password(string), cartCheck(boolean)
 4. getUserbyId
 6. addCartToUser
 7. removeCartFromUser
+api: 
+get User
+get allUsers
+post createUser
+post login
+
 
 cart:
 cart table: id, userId, isPurchased
 1. createCart
 1. getCartById
-2. getCartByUserId
-3. getTotalPrice * 
+2. getCartByUserId 
 4. editCart
 5. closeCart
+6. purchaseCart
+
+api: 
+1. patch editCart
+2. get userCart
+3. get carts 
+4. get userPastOrders
+5. delete closeCart(also delete cart_beers)
+6. patch markCartPurchased
 
 user_beers
 tabel: id, userId, beerId, favorite, purchased, score
-1. createBeer_users
-5. favoriteBeer*
-1. scoreBeer*
+1. createUserBeers
+    (
+        favoriteBeer
+        scoreBeer
+    )
+5. 
 2. markBeerAsPurchased
 3. getABeersScore
-4. getUserFavorites
-5. getUserPurchased
-
-
+4. getUserBeers(these two should use this one function)
+    (
+      getUserFavorites
+      getUserPurchased
+    )
+api: 
+1. get userfavoritebeers
+2. get userpurchacedBeerd
+3. patch markBeerAsPurchased, favorite, score
+4. post. (createUserBeer) favorite, score
+5. get scoreByBeerId
 
 cart_beers 
 table: id, cartId, beerId, quantity, price
 2. changeBeerQuantity
-3. addBeertoCart
+3. addBeerToCart
 4. removeBeerCart
 4. getCartBeerById
 5. getCartBeersByCartId
-6. getCartBeersByBeerId
+6. getCartBeersByBeerId 
+
+api:
+1. patch editQuantity
+2. post addBeer
+3. delete removeBeer
+4. get beers in specific cart
+5. get  a specific beer in any cart (*)

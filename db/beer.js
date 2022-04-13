@@ -1,8 +1,7 @@
-const client = require("./client");
+const client = require("./");
 // const { getUserByUsername } = require("./users"); Will probably need in future
 
 async function createBeer({
-  id,
   name,
   description,
   image,
@@ -16,11 +15,11 @@ async function createBeer({
       rows: [beer],
     } = await client.query(
       `
-          INSERT INTO beers(id, name, description, image, abv, brewery, style, price)
-          VALUES($1, $2, $3, $4, $5, $6, $7, $8, )
+          INSERT INTO beers(name, description, image, abv, brewery, style, price)
+          VALUES($1, $2, $3, $4, $5, $6, $7)
           RETURNING *;
         `,
-      [id, name, description, image, abv, brewery, style, price]
+      [name, description, image, abv, brewery, style, price]
     );
 
     return beer;
@@ -125,9 +124,7 @@ async function getBeerByName(name) {
 
 async function getBeerByStyle(style) {
   try {
-    const {
-      rows: [beer],
-    } = await client.query(`
+    const { rows: beer } = await client.query(`
       SELECT *
       FROM beers
       WHERE style=${style}
@@ -145,9 +142,7 @@ async function getBeerByStyle(style) {
 
 async function getBeerByBrewery(brewery) {
   try {
-    const {
-      rows: [beer],
-    } = await client.query(`
+    const { rows: beer } = await client.query(`
       SELECT *
       FROM beers
       WHERE brewery=${brewery}
