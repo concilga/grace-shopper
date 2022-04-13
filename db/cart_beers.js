@@ -1,4 +1,4 @@
-const client = require("./client");
+const client = require(".");
 
 async function getCartBeerById(id) {
   try {
@@ -68,7 +68,7 @@ async function getCartBeersByCartId(cartId) {
 async function addBeerToCart({ beerId, cartId, quantity, price }) {
   try {
     const {
-      rows: [cart_beer],
+      rows: [cart_beer]
     } = await client.query(
       `
         INSERT INTO cart_beers("beerId", "cartId", quantity, price) 
@@ -134,6 +134,5 @@ module.exports = {
   removeBeerFromCart,
   getCartBeersByCartId,
   changeBeerQuantity,
-  getCartBeerByBeerId,
   getCartsByBeerId,
 };

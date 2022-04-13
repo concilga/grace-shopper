@@ -1,4 +1,4 @@
-const client = require("./client");
+const client = require("./");
 
 async function createCart({ userId, isPurchased }) {
   try {
@@ -42,6 +42,7 @@ async function getCartByUserId(userId) {
     throw error;
   }
 }
+
 async function editCart(isPurchased, cartId) {
   try {
     const {
@@ -56,6 +57,7 @@ async function editCart(isPurchased, cartId) {
     throw error;
   }
 }
+
 async function closeCart(cartId) {
   try {
     const {
