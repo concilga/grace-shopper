@@ -134,7 +134,7 @@ function getBeerSeed() {
         },
         {
           "id": 14,
-          "first_brewed": "02/2010",
+          "name": "Alpha Dog",
           "description": "A fusion of caramel malt flavours and punchy New Zealand hops. A session beer you can get your teeth into.",
           "image": "https://images.punkapi.com/v2/14.png",
           "abv": 4.5,
