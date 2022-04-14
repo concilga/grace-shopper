@@ -32,16 +32,14 @@ api:
 5. get beerById
 
 user:
-user table: id, username(string), password(string), cartCheck(boolean)
+user table: id, username(string), password(string), admin(boolean), profilePic(string)
 1. createUser
 2. verifyUser
 3. getUserByUsername
 4. getUserbyId
-6. addCartToUser
-7. removeCartFromUser
+
 api: 
 get User
-get allUsers
 post createUser
 post login
 
@@ -53,7 +51,7 @@ cart table: id, userId, isPurchased
 2. getCartByUserId 
 4. editCart
 5. closeCart
-6. purchaseCart
+6. deleteCart
 
 api: 
 1. patch editCart
@@ -64,14 +62,14 @@ api:
 6. patch markCartPurchased
 
 user_beers
-tabel: id, userId, beerId, favorite, purchased, score
+tabel: id, userId, beerId, favorite,  score
 1. createUserBeers
     (
         favoriteBeer
         scoreBeer
     )
 5. 
-2. markBeerAsPurchased
+2. markBeersAsPurchased
 3. getABeersScore
 4. getUserBeers(these two should use this one function)
     (
@@ -79,9 +77,8 @@ tabel: id, userId, beerId, favorite, purchased, score
       getUserPurchased
     )
 api: 
-1. get userfavoritebeers
-2. get userpurchacedBeerd
-3. patch markBeerAsPurchased, favorite, score
+1. get userBeers
+3. patch favorite, score
 4. post. (createUserBeer) favorite, score
 5. get scoreByBeerId
 

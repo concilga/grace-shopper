@@ -1,5 +1,7 @@
 const client = require("./");
+const { deleteBeersbyCartId } = require("./cart_beers");
 
+/* */
 async function createCart({ userId, isPurchased }) {
   try {
     const {
@@ -17,6 +19,7 @@ async function createCart({ userId, isPurchased }) {
     throw error;
   }
 }
+
 async function getCartById(id) {
   try {
     const {
@@ -31,40 +34,71 @@ async function getCartById(id) {
     throw error;
   }
 }
-async function getCartByUserId(userId) {
+
+async function getUserOpenCart(userId) {
+  try {
+    const { rows: [cart] } = await client.query(`
+        SELECT * FROM carts
+        WHERE "userId"=$1
+        AND "isPurchased"=$2;
+      `, [userId, false]);
+
+    return [cart];
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function getUserPurchasedCarts(userId) {
   try {
     const { rows: carts } = await client.query(`
         SELECT * FROM carts
-        WHERE "userId"=${userId};
-      `);
+        WHERE "userId"=$1 
+        AND "isPurchased"=$2;
+      `, [userId, true]
+      );
+
     return carts;
   } catch (error) {
     throw error;
   }
 }
 
-async function editCart(isPurchased, cartId) {
+async function deleteCart(cartId) {
   try {
-    const {
-      rows: [cart],
-    } = await client.query(`
-        UPDATE carts
-        SET "isPurchased" = ${isPurchased}
+    await client.query(`
+        DELETE
+        FROM carts
         WHERE id= ${cartId};
       `);
-    return cart;
+    
+    const cart_beers = deleteBeersbyCartId(cartId);
+    if(!cart_beers) {
+      return {
+        success: false,
+        error: "CartIdDoesNotExist",
+        message: "Could not delete beers from cart!"
+      }
+    } 
+
+    return {
+      success: true,
+      error: "none",
+      message: "Cart Successfully Deleted"
+    };
   } catch (error) {
     throw error;
   }
 }
 
+/* */
 async function closeCart(cartId) {
   try {
     const {
       rows: [cart],
     } = await client.query(`
-        DELETE
-        FROM carts
+        UPDATE carts
+        SET "isPurchased" = true
         WHERE id= ${cartId};
       `);
     return cart;
@@ -75,8 +109,9 @@ async function closeCart(cartId) {
 
 module.exports = {
   closeCart,
-  editCart,
-  getCartByUserId,
+  deleteCart,
+  getUserOpenCart,
+  getUserPurchasedCarts,
   getCartById,
   createCart
 }

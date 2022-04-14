@@ -1,6 +1,10 @@
 const client = require("./");
+const { getBeerById } = require("./beer");
+const { getUserPurchasedCarts } = require("./cart");
+const { getCartBeersByCartId } = require("./cart_beers");
 
-async function createUserBeers({userId, beerId, favorite, purchased, score}) {
+/* */
+async function createUserBeers({userId, beerId, favorite, score}) {
     // if(!score) {
     //     score = null;
     // }
@@ -10,11 +14,11 @@ async function createUserBeers({userId, beerId, favorite, purchased, score}) {
  try {
     const { rows: [userBeer] } = await client.query(
         `
-            INSERT INTO user_beers("userId", "beerId", favorite, purchased, score)
-            VALUES($1, $2, $3, $4, $5)
+            INSERT INTO user_beers("userId", "beerId", favorite, score)
+            VALUES($1, $2, $3, $4)
             RETURNING *;
         `,
-        [userId, beerId, favorite, false, score]
+        [userId, beerId, favorite, score]
     );
 
     return userBeer;
@@ -23,15 +27,13 @@ async function createUserBeers({userId, beerId, favorite, purchased, score}) {
  }
 }
 
+/* */
 async function favoriteBeer() {
 
 }
 
+/* */
 async function scoreBeer() {
-
-}
-
-async function markBeerAsPurchased() {
 
 }
 
@@ -41,7 +43,7 @@ async function getABeersScore(beerId) {
       `
             SELECT *
             FROM user_beers
-            WHERE "userId"=$1;
+            WHERE "beerId"=$1;
           `,
       [beerId]
     );
@@ -52,9 +54,9 @@ async function getABeersScore(beerId) {
 
     let avgScore = 0;
     let counter = 0;
-    for(let i = 0; i < beers.rows.length; i++) {
-        if(beers.rows[i]){
-           avgScore += beers.rows[i].score;
+    for(let i = 0; i < beers.length; i++) {
+        if(beers[i]){
+           avgScore += beers[i].score;
            counter++;
         } 
     }
@@ -81,17 +83,52 @@ async function getUserBeers(userId) {
       throw Error("This user does not have any beers associated with their userId");
     }
 
-    return userBeers;
+    let beers = {
+      favorite: [],
+      scored: [],
+      purchaced: []
+    }
+
+    for(let l = 0; l < userBeers.length; l++) {
+      if(userBeers[l].favorite === true) {
+        beers.favorite.push(await getBeerById(userBeers[l].beerId))
+      }
+      if(userBeers[l].score) {
+        const beer = await getBeerById(userBeers[l].beerId)
+        const score = userBeers[l].score
+        beers.scored.push({beer, score})
+      }
+    }
+
+    const purchasedCarts = await getUserPurchasedCarts(userId);
+    let purchasedBeers = [];
+    if(purchasedCarts) {
+      for(let i = 0; i < purchasedCarts.length; i++) {
+        purchasedBeers.push(await getCartBeersByCartId(purchasedCarts[i].id));
+      }
+  
+      for(let j = 0; j < purchasedBeers.length; j++) {
+        if(purchasedBeers[j].length === 1) {
+          beers.purchaced.push(await getBeerById(purchasedBeers[j][0].beerId));
+        } else {
+          for(let k = 0; k < purchasedBeers[j].length; k++) {
+            beers.purchaced.push(await getBeerById(purchasedBeers[j][k].beerId));
+          }
+        }
+      }
+    }
+    
+    return beers;
   } catch (error) {
     throw error;
   }
 }
 
+
 module.exports = {
     favoriteBeer,
     createUserBeers,
     scoreBeer,
-    markBeerAsPurchased,
-    getABeersScore,
-    getUserBeers
+    getUserBeers,
+    getABeersScore
 }

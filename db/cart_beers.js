@@ -56,7 +56,7 @@ async function getCartBeersByCartId(cartId) {
     );
 
     if (!cart_beers) {
-      throw Error("no carts contain a beer with that id");
+      throw Error("There are no carts with that Id");
     }
 
     return cart_beers;
@@ -65,6 +65,27 @@ async function getCartBeersByCartId(cartId) {
   }
 }
 
+async function getSpecificBeerFromCart(beerId, cartId) {
+  try {
+    const { rows: [cart_beer] } = await client.query(
+      `
+            SELECT *
+            FROM cart_beers
+            WHERE "cartId"=$1
+            AND "beerId"=$2
+          `,
+      [cartId, beerId]
+    );
+
+    if (!cart_beer) {
+      throw Error("no carts contain a beer with that id");
+    }
+
+    return cart_beer;
+  } catch (error) {
+    throw error;
+  }
+}
 async function addBeerToCart({ beerId, cartId, quantity, price }) {
   try {
     const {
@@ -84,7 +105,7 @@ async function addBeerToCart({ beerId, cartId, quantity, price }) {
   }
 }
 
-async function removeBeerFromCart(beerId) {
+async function removeBeerFromCart({beerId,  cartId}) {
   try {
     const {
       rows: [cart_beer],
@@ -93,9 +114,10 @@ async function removeBeerFromCart(beerId) {
             DELETE
             FROM cart_beers
             WHERE "beerId"=$1
+            AND "cartId"=$2
             RETURNING *;
         `,
-      [beerId]
+      [beerId, cartId]
     );
 
     return cart_beer;
@@ -104,25 +126,47 @@ async function removeBeerFromCart(beerId) {
   }
 }
 
-async function changeBeerQuantity({ beerId, quantity }) {
+async function changeBeerQuantity({ cartId, beerId, quantity }) {
   try {
-    let beer_quantity = await getCartBeerByBeerId(beerId);
+    let cartBeer = await getSpecificBeerFromCart(beerId, cartId);
 
-    if (!beer_quantity) {
-      throw Error("beer_quantity does not exist with that id");
+    if (!cartBeer) {
+      throw Error("This cart does not contain a beer with that Id");
     }
 
-    await client.query(
+    const {
+      rows: [cart_beer],
+    } = await client.query(
       `
         UPDATE cart_beers
         SET quantity=$1,
         WHERE "beerId"=$2
+        AND "cartId"=$3
         RETURNING *;
         `,
-      [beerId, quantity]
+      [quantity, beerId, cartId]
     );
 
-    return beer_quantity;
+    return cart_beer;
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function deleteBeersbyCartId() {
+  try{
+    const {
+      rows: cart_beers,
+    } = await client.query(
+      `
+            DELETE
+            FROM cart_beers
+            WHERE "cartId"=$1
+            RETURNING *;
+        `,
+      [cartId]
+    );
+    return cart_beers;
   } catch (error) {
     throw error;
   }
@@ -135,4 +179,5 @@ module.exports = {
   getCartBeersByCartId,
   changeBeerQuantity,
   getCartsByBeerId,
+  deleteBeersbyCartId
 };

@@ -5,7 +5,8 @@ const { addBeerToCart } = require("./cart_beers");
 const client = require("./");
 const { createBeer } = require("./beer");
 const { createCart } = require("./cart");
-const { createUserBeers } = require("./user_beers")
+const { createUserBeers } = require("./user_beers");
+const { getUserBeers } = require("./user_beers");
 
 
 const dropTables = async () => {
@@ -40,7 +41,8 @@ async function createTables() {
         id SERIAL PRIMARY KEY,
         username varchar(255) UNIQUE NOT NULL,
         password VARCHAR(255) NOT NULL,
-        "cartCheck" BOOLEAN DEFAULT false
+        admin BOOLEAN DEFAULT false,
+        "profilePic" VARCHAR(255)
       );
 
       CREATE TABLE carts(
@@ -54,7 +56,6 @@ async function createTables() {
         "userId" INTEGER REFERENCES users(id),
         "beerId" INTEGER REFERENCES beers(id),
         "favorite" BOOLEAN DEFAULT false,
-        "purchased" BOOLEAN DEFAULT false,
         "score" INTEGER
       );
 
@@ -80,22 +81,18 @@ async function createInitialUsers() {
       { 
         username: "colton", 
         password: "password123", 
-        cartCheck: true
       },
       { 
         username: "Ty", 
         password: "password321",
-        cartCheck: true
       },
       { 
         username: "Greg", 
         password: "123password",
-        cartCheck: true
       },
       { 
         username: "Bob", 
         password: "321password",
-        cartCheck: false 
       },
     ];
     const users = await Promise.all(usersToCreate.map(createUser));
@@ -184,98 +181,84 @@ async function createInitialUserBeers() {
         userId: 1,
         beerId: 3,
         favorite: false,
-        purchased: true,
         score: 75
       },
       { 
         userId: 1,
         beerId: 7,
         favorite: true,
-        purchased: true,
         score: 95
       },
       { 
         userId: 1,
         beerId: 13,
         favorite: true,
-        purchased: false,
         score: null
       },
       { 
         userId: 1,
         beerId: 10,
         favorite: true,
-        purchased: true,
         score: 90
       },
       { 
         userId: 2,
         beerId: 23,
         favorite: false,
-        purchased: true,
         score: 50
       },
       { 
         userId: 2,
         beerId: 2,
         favorite: true,
-        purchased: true,
         score: 87
       },
       { 
         userId: 2,
         beerId: 15,
         favorite: true,
-        purchased: false,
         score: null
       },
       { 
         userId: 3,
         beerId: 6,
         favorite: true,
-        purchased: false,
         score: null
       },
       { 
         userId: 3,
         beerId: 12,
         favorite: false,
-        purchased: true,
         score: 85
       },
       { 
         userId: 3,
         beerId: 14,
         favorite: true,
-        purchased: true,
         score: 97
       },
       { 
         userId: 3,
         beerId: 19,
         favorite: true,
-        purchased: true,
         score: 93
       },
       { 
         userId: 4,
         beerId: 22,
         favorite: false,
-        purchased: true,
         score: 91
       },
       { 
         userId: 4,
         beerId: 4,
         favorite: true,
-        purchased: false,
         score: null
       },
       { 
         userId: 4,
         beerId: 20,
         favorite: true,
-        purchased: false,
         score: null
       },
     ];
