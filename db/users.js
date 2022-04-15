@@ -3,7 +3,6 @@ const client = require("./");
 
 async function getUserProfilePic() {
   const profilePicNum = Math.floor(Math.random() * 5);
-  console.log(profilePicNum)
   let profilePic = "";
 
   switch (profilePicNum) {
@@ -113,7 +112,7 @@ async function getUserByUsername(username) {
 }
 
 async function makeUserAdmin() {
-  
+
 }
 
 // async function editCartForUser(userId, checkCart) {

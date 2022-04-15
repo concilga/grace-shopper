@@ -24,6 +24,7 @@ db functions:
 11. getAllBeers
 12. getBeersByUser
 13. averageScore * 
+
 api:
 1. get allBeers
 2. post createBeer
@@ -62,7 +63,7 @@ api:
 6. patch markCartPurchased
 
 user_beers
-tabel: id, userId, beerId, favorite,  score
+tabel: id, userId, beerId, favorite, score
 1. createUserBeers
     (
         favoriteBeer
@@ -95,5 +96,5 @@ api:
 1. patch editQuantity
 2. post addBeer
 3. delete removeBeer
-4. get beers in specific cart
+4. get beers in specific cart.
 5. get  a specific beer in any cart (*)

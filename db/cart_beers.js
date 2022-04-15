@@ -1,4 +1,5 @@
 const client = require(".");
+const { getUserOpenCart, createCart } = require("./cart");
 
 async function getCartBeerById(id) {
   try {
@@ -35,7 +36,7 @@ async function getCartsByBeerId(beerId) {
     );
 
     if (!cart_beers) {
-      throw Error("no carts contain a beer with that id");
+      throw Error("No carts contain a beer with that id");
     }
 
     return cart_beers;
@@ -86,8 +87,21 @@ async function getSpecificBeerFromCart(beerId, cartId) {
     throw error;
   }
 }
-async function addBeerToCart({ beerId, cartId, quantity, price }) {
+
+async function addBeerToCart({ beerId, userId, quantity, price }) {
   try {
+    let cart = await getUserOpenCart(userId);
+
+    if (!cart) {
+      cart = await createCart(userId);
+    }
+
+    if(!cart) {
+      throw Error("Error Creating Cart");
+    }
+
+    const cartId = cart.id;
+
     const {
       rows: [cart_beer]
     } = await client.query(
@@ -105,8 +119,16 @@ async function addBeerToCart({ beerId, cartId, quantity, price }) {
   }
 }
 
-async function removeBeerFromCart({beerId,  cartId}) {
+async function removeBeerFromCart({beerId, userId}) {
   try {
+    let cart = await getUserOpenCart(userId);
+
+    if (!cart) {
+      throw Error("This cart does not exist!");
+    }
+
+    const cartId = cart.id;
+    
     const {
       rows: [cart_beer],
     } = await client.query(
@@ -126,13 +148,15 @@ async function removeBeerFromCart({beerId,  cartId}) {
   }
 }
 
-async function changeBeerQuantity({ cartId, beerId, quantity }) {
+async function changeBeerQuantity({ userId, beerId, quantity }) {
   try {
-    let cartBeer = await getSpecificBeerFromCart(beerId, cartId);
+    let cart = await getUserOpenCart(userId);
 
-    if (!cartBeer) {
-      throw Error("This cart does not contain a beer with that Id");
+    if (!cart) {
+      throw Error("This cart does not exist!");
     }
+
+    const cartId = cart.id;
 
     const {
       rows: [cart_beer],

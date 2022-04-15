@@ -365,6 +365,7 @@ async function createInitialCartBeers() {
     console.log("Cart Beers created:");
     //console.log(cartBeers);
     console.log("Finished creating Cart Beers!");
+    console.log(await getUserBeers(3));
   } catch (error) {
     console.error("Error creating Cart Beers!")
     throw error;

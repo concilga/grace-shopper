@@ -92,7 +92,7 @@ async function deleteCart(cartId) {
 }
 
 /* */
-async function closeCart(cartId) {
+async function purchaseCart(cartId) {
   try {
     const {
       rows: [cart],
@@ -108,7 +108,7 @@ async function closeCart(cartId) {
 }
 
 module.exports = {
-  closeCart,
+  purchaseCart,
   deleteCart,
   getUserOpenCart,
   getUserPurchasedCarts,
