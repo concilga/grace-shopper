@@ -3,14 +3,8 @@ const { getBeerById } = require("./beer");
 const { getUserPurchasedCarts } = require("./cart");
 const { getCartBeersByCartId } = require("./cart_beers");
 
-/* */
 async function createUserBeers({userId, beerId, favorite, score}) {
-    // if(!score) {
-    //     score = null;
-    // }
-    // if(!favorite) {
-    //     favorite = false;
-    // }
+
  try {
     const { rows: [userBeer] } = await client.query(
         `
@@ -27,14 +21,65 @@ async function createUserBeers({userId, beerId, favorite, score}) {
  }
 }
 
-/* */
-async function favoriteBeer() {
+async function editUserBeer({userId, beerId, favorite, score}) {
+  try {
+    const {
+      rows: [beer],
+    } = await client.query(
+      `
+        SELECT * 
+        FROM user_beers
+        WHERE "userId"=$1
+        AND "beerId"=$2
+        RETURNING *
+      `[userId, beerId]
+    );
 
-}
+    if (!beer) {
+      return false;
+    }
 
-/* */
-async function scoreBeer() {
+    if(score) {
+      await client.query(
+        `
+          UPDATE user_beers
+          SET score=$1,
+          WHERE "beerId"=$2
+          AND "userId"=$3
+          RETURNING *;
+          `,
+        [score, beerId, userId]
+      );
+    }
 
+    if(favorite) {
+      await client.query(
+        `
+          UPDATE user_beers
+          SET favorite=$1,
+          WHERE "beerId"=$2
+          AND "userId"=$3
+          RETURNING *;
+          `,
+        [favorite, beerId, userId]
+      );
+    }
+
+    const {
+      rows: [userBeer],
+    } = await client.query(
+      `
+        SELECT * 
+        FROM user_beers
+        WHERE "userId"=$1
+        AND "beerId"=$2
+        RETURNING *
+      `[userId, beerId]
+    );
+    return userBeer;
+  } catch (error) {
+    throw error;
+  }
 }
 
 async function getABeersScore(beerId) {
@@ -126,9 +171,8 @@ async function getUserBeers(userId) {
 
 
 module.exports = {
-    favoriteBeer,
     createUserBeers,
-    scoreBeer,
+    editUserBeer,
     getUserBeers,
     getABeersScore
 }
