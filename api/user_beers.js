@@ -78,3 +78,5 @@ userBeersRouter.patch("/", async (req, res, next) => {
         next(error);
       }
 });
+
+module.exports = userBeersRouter;
