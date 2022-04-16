@@ -1,3 +1,74 @@
 * {
-    font-family: monospace;
+  font-family: arial,sans-serif;
+  margin: 0;
+}
+
+/* colors
+  background: #15202B
+  post/card background: #192734
+  card accents: #22303C
+  light purple: #BB86FC
+  text: #FFFFFF
+  grey borders: #8899A6
+*/
+
+body {
+  /* padding: 20px; */
+  background-color: white;
+  justify-content: center;
+  width: auto;
+  height: 1000px;
+}
+
+#app {
+  height: 100%;
+}
+
+.main-navbar {
+  background-color: #15202B;
+  border-bottom: white;
+  border-width: 2px;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  transition: all 300ms ease-in-out;
+}
+
+.main-navbar > #link_logo {
+  height: 100px;
+  margin-left: 50px;
+}
+
+.main-navbar > #link_logo > img {
+  height: 100px;
+}
+
+.main-navbar > #nav {
+ margin-right: 50px;;
+}
+
+#nav-link {
+  text-decoration: none;
+  color: white;
+  font-size: 2rem;
+}
+
+#nav-link:hover {
+  text-decoration: underline;
+  font-size: 2.4rem;
+}
+
+.scroll-down .main-navbar{
+  transform: translate3d(0, -100%, 0);
+}
+
+.scroll-up .main-navbar{
+  filter: drop-shadow(0 -10px 20px rgb(170,170,170))
 }
