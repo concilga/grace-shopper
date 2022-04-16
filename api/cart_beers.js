@@ -47,7 +47,11 @@ cartBeersRouter.delete("/:beerId", async (req, res, next) => {
   }
 });
 
+<<<<<<< HEAD
+cartBeerRouter.get("/", async (req, res, next) => {
+=======
 cartBeersRouter.get("/", async (req, res) => {
+>>>>>>> c429aeaa74b10a306a6c29593670d0aa9d5ce00c
   try {
     if (!req.user) {
       return next({
