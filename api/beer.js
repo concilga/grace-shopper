@@ -90,8 +90,4 @@ beerRouter.patch("/:beerId", async (req, res, next) => {
   }
 });
 
-<<<<<<< HEAD
 module.exports = beerRouter;
-=======
-module.exports = beerRouter;
->>>>>>> c429aeaa74b10a306a6c29593670d0aa9d5ce00c
