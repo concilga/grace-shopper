@@ -1,38 +1,26 @@
-// 1. patch editCart
-// 2. get userCart Done
-// 3. get carts
-// 4. get userPastOrders
-// 5. delete DeleteCart
-// 6. patch purchaseCart
-
 const express = require("express");
 const cartRouter = express.Router();
 const {
-  getCart,
-  getCartById,
-  getUserOpenCart,
   deleteCart,
   getUserPurchasedCarts,
+  purchaseCart,
 } = require("../db/cart");
 
 const {
-  userCart,
-  carts,
-  userPastOrders,
-  closeCart,
-  markCartPurchased,
-  userId,
-} = require("..db/cart");
-const {
-  changeBeerQuantity,
-  getCartBeersByCartId,
+  getCartBeerByUserId 
 } = require("../db/cart_beers");
 
 //getuserCart throw req in
 cartRouter.get("/me", async (req, res, next) => {
   const userId = req.user.id;
   try {
-    const uCart = await getCartBeersByUserId(userId);
+    if (!req.user) {
+      return next({
+        name: "userVerificationError",
+        message: "Only a logged in user can access their user information!",
+      });
+    }
+    const uCart = await getCartBeerByUserId(userId);
     res.send({
       uCart,
     });
@@ -57,6 +45,12 @@ cartRouter.get("/me", async (req, res, next) => {
 //userPastOrders throw req in (if not req.user)
 cartRouter.get("/", async (req, res) => {
   try {
+    if (!req.user) {
+      return next({
+        name: "userVerificationError",
+        message: "Only a logged in user can access their user information!",
+      });
+    }
     const userId = req.user.id;
     const UPO = await getUserPurchasedCarts(userId);
     res.send(UPO);
@@ -71,9 +65,15 @@ cartRouter.patch("/:cartId", async (req, res, next) => {
   const { cartId } = req.params;
   // console.log(req.body)
   try {
+    if (!req.user) {
+      return next({
+        name: "userVerificationError",
+        message: "Only a logged in user can access their user information!",
+      });
+    }
     const deletedCart = await deleteCart(cartId);
     res.send({
-      cart: updatedCart,
+      cart: deletedCart,
     });
   } catch (error) {
     next();
@@ -83,11 +83,17 @@ cartRouter.patch("/:cartId", async (req, res, next) => {
 //patch purchaseCart
 cartRouter.patch("/:cartId", async (req, res, next) => {
   const { cartId } = req.params;
-  // console.log(req.body)
+
   try {
-    const PurchasedCart = await PurchasedCart(userId);
+    if (!req.user) {
+      return next({
+        name: "userVerificationError",
+        message: "Only a logged in user can access their user information!",
+      });
+    }
+    const PurchasedCart = await purchaseCart(cartId)
     res.send({
-      cart: PurchasedCart,
+      cart: PurchasedCart
     });
   } catch (error) {
     next();
