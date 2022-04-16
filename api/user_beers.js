@@ -7,6 +7,24 @@ const {
     getABeersScore
 } = require("../db/export");
 
+userBeersRouter.get("/", async (req, res, next) => {
+  try {
+    if (!req.user) {
+      return next({
+        name: "userVerificationError",
+        message: "Only a logged in user can access their user information!",
+      });
+    }
+
+    const userId = req.user.id;
+
+    const usersBeers = getUserBeers(userId);
+    res.send(usersBeers);
+  } catch (error) {
+    next(error);
+  }
+});
+
 userBeersRouter.post("/", async (req, res, next) => {
     try {
       if (!req.user) {
@@ -60,3 +78,5 @@ userBeersRouter.patch("/", async (req, res, next) => {
         next(error);
       }
 });
+
+module.exports = userBeersRouter;

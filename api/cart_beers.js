@@ -1,12 +1,12 @@
 const express = require("express");
-const cartBeerRouter = express.Router();
+const cartBeersRouter = express.Router();
 const {
   addBeerToCart,
   removeBeerFromCart,
   getSpecificBeerFromCart,
 } = require("../db");
 
-cartBeerRouter.post("/:beerId", async (req, res, next) => {
+cartBeersRouter.post("/:beerId", async (req, res, next) => {
   try {
     if (!req.user) {
       return next({
@@ -30,7 +30,7 @@ cartBeerRouter.post("/:beerId", async (req, res, next) => {
   }
 });
 
-cartBeerRouter.delete("/:beerId", async (req, res, next) => {
+cartBeersRouter.delete("/:beerId", async (req, res, next) => {
   try {
     if (!req.user) {
       return next({
@@ -47,7 +47,11 @@ cartBeerRouter.delete("/:beerId", async (req, res, next) => {
   }
 });
 
+<<<<<<< HEAD
 cartBeerRouter.get("/", async (req, res, next) => {
+=======
+cartBeersRouter.get("/", async (req, res) => {
+>>>>>>> c429aeaa74b10a306a6c29593670d0aa9d5ce00c
   try {
     if (!req.user) {
       return next({
@@ -63,7 +67,7 @@ cartBeerRouter.get("/", async (req, res, next) => {
   }
 });
 
-cartBeerRouter.patch("/:beerId", async (req, res, next) => {
+cartBeersRouter.patch("/:beerId", async (req, res, next) => {
   try {
     if (!req.user) {
       return next({
@@ -87,3 +91,5 @@ cartBeerRouter.patch("/:beerId", async (req, res, next) => {
     next(error);
   }
 });
+
+module.exports = cartBeersRouter;

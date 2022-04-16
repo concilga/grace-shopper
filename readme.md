@@ -55,12 +55,10 @@ cart table: id, userId, isPurchased
 6. deleteCart
 
 api: 
-1. patch editCart
 2. get userCart
-3. get carts 
 4. get userPastOrders
-5. delete closeCart(also delete cart_beers)
-6. patch markCartPurchased
+5. delete DeleteCart
+6. patch purchaseCart
 
 user_beers
 tabel: id, userId, beerId, favorite, score

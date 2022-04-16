@@ -1,21 +1,29 @@
 const client = require(".");
 const { getUserOpenCart, createCart } = require("./cart");
 
-async function getCartBeerById(id) {
+async function getCartBeerByUserId(userId) {
   try {
+    let cart = await getUserOpenCart(userId);
+
+    if (!cart) {
+      throw Error("This User does not have an open cart");
+    }
+
+    const cartId = cart.id;
+
     const {
       rows: [cart_beers],
     } = await client.query(
       `
         SELECT *
         FROM cart_beers
-        WHERE id=$1;
+        WHERE "cartId"=$1;
       `,
-      [id]
+      [cartId]
     );
 
     if (!cart_beers) {
-      throw Error("cart_beers with that id does not exist");
+      throw Error("This cart does not contain any beers");
     }
 
     return cart_beers;
@@ -128,7 +136,7 @@ async function removeBeerFromCart({beerId, userId}) {
     }
 
     const cartId = cart.id;
-    
+
     const {
       rows: [cart_beer],
     } = await client.query(
@@ -197,7 +205,7 @@ async function deleteBeersbyCartId() {
 }
 
 module.exports = {
-  getCartBeerById,
+  getCartBeerByUserId,
   addBeerToCart,
   removeBeerFromCart,
   getCartBeersByCartId,
