@@ -1,5 +1,5 @@
 const express = require("express");
-const productRouter = express.Router();
+const beerRouter = express.Router();
 const {
   createBeer,
   deleteBeer,
@@ -8,12 +8,12 @@ const {
   getAllBeers,
 } = require("../db");
 
-productRouter.get("/", async (req, res) => {
+beerRouter.get("/", async (req, res) => {
   const beer = await getAllBeers();
   res.send(beer);
 });
 
-productRouter.post("/", async (req, res, next) => {
+beerRouter.post("/", async (req, res, next) => {
   try {
     if (!req.user) {
       return next({
@@ -42,7 +42,7 @@ productRouter.post("/", async (req, res, next) => {
   }
 });
 
-productRouter.delete("/:beerId", async (req, res, next) => {
+beerRouter.delete("/:beerId", async (req, res, next) => {
   const { beerId } = req.params;
   try {
     if (!req.user) {
@@ -59,7 +59,7 @@ productRouter.delete("/:beerId", async (req, res, next) => {
   }
 });
 
-productRouter.patch("/:beerId", async (req, res, next) => {
+beerRouter.patch("/:beerId", async (req, res, next) => {
   const { beerId } = req.params;
   const { name, description, image, abv, brewery, style, price, score } =
     req.body;
@@ -89,3 +89,5 @@ productRouter.patch("/:beerId", async (req, res, next) => {
     next(error);
   }
 });
+
+module.exports = beerRouter;
