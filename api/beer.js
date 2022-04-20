@@ -4,13 +4,17 @@ const {
   createBeer,
   deleteBeer,
   editBeer,
-  getBeerById,
   getAllBeers,
-} = require("../db");
+} = require("../db/export");
 
 beerRouter.get("/", async (req, res) => {
-  const beer = await getAllBeers();
-  res.send(beer);
+  try {
+    const beer = await getAllBeers();
+    res.send(beer);
+  } catch (error) {
+    next(error);
+  }
+  
 });
 
 beerRouter.post("/", async (req, res, next) => {

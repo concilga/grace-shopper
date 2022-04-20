@@ -127,6 +127,25 @@ async function addBeerToCart({ beerId, userId, quantity, price }) {
   }
 }
 
+async function seedCarts({ beerId, cartId, quantity, price }) {
+  try {
+    const {
+      rows: [cart_beer]
+    } = await client.query(
+      `
+        INSERT INTO cart_beers("beerId", "cartId", quantity, price) 
+        VALUES($1, $2, $3, $4)
+        RETURNING *;
+        `,
+      [beerId, cartId, quantity, price]
+    );
+
+    return cart_beer;
+  } catch (error) {
+    throw error;
+  }
+}
+
 async function removeBeerFromCart({beerId, userId}) {
   try {
     let cart = await getUserOpenCart(userId);
@@ -211,5 +230,6 @@ module.exports = {
   getCartBeersByCartId,
   changeBeerQuantity,
   getCartsByBeerId,
-  deleteBeersbyCartId
+  deleteBeersbyCartId,
+  seedCarts
 };

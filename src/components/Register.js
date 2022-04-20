@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
-import { BrowserRouter, Route, Link, useHistory } from 'react-router-dom';
+import { BrowserRouter, Route, Link, useNavigate } from 'react-router-dom';
 
 const Register = ({setToken}) => {
     const [username, setUsername] = useState('');
@@ -8,7 +8,7 @@ const Register = ({setToken}) => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('')
 
-    const history = useHistory();
+    const history = useNavigate();
   
     const handleChange = (event) => {
       setUsername(event.target.value);
@@ -34,7 +34,7 @@ const Register = ({setToken}) => {
             }),
         });
         const info = await response.json();
-
+        console.log(info);
         if(info.error) {
             return setError(info.message)
         }
@@ -42,7 +42,7 @@ const Register = ({setToken}) => {
         setToken(info.token);
         localStorage.setItem("token", info.token);
 
-        history.push("/");
+        history("/");
     }
   
     const handleSubmit = (event) => {

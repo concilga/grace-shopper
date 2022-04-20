@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
-import { BrowserRouter, Route, Link, useHistory } from 'react-router-dom';
+import { BrowserRouter, Route, Link, useNavigate } from 'react-router-dom';
 
 const Login = ({setToken}) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [checkLogin, setCheckLogin] = useState('')
 
-    const history = useHistory();
+    const history = useNavigate();
   
     const handleChange = (event) => {
       setUsername(event.target.value);

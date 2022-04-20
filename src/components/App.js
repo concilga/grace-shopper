@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import { Route } from 'react-router-dom';
-import { Beer } from './Beer';
-import { Login } from './Login';
-import { Register } from './Register';
+import { Route, Routes } from 'react-router-dom';
+import Beer from './Beer';
+import Login  from './Login';
+import Register from './Register';
+import Navbar from "./Navbar";
+import Home from "./Home";
 
 const App = () => {
   const [token, setToken] = useState("");
@@ -28,15 +30,7 @@ const App = () => {
   }
 
   const fetchBeer = async () => {
-    const response = await fetch(
-      "/api/beer",
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const response = await fetch("/api/beer");
     const info = await response.json();
     setBeer(info);
   };
@@ -48,8 +42,8 @@ const App = () => {
 
   return(
     <>
-      <Navbar />
-
+    <Navbar token={token} setToken={setToken} setUser={setUser}/>
+    <Routes>
       <Route exact path="/"
         element={ <Home/> }
       />
@@ -58,9 +52,9 @@ const App = () => {
         element={ <Beer beers={beers}/> }
       />
 
-      <Route path="/Account"
+      {/* <Route path="/Account"
         element={ <Account/> }
-      />
+      /> */}
 
       <Route path="/Login"
         element={ <Login token={token} setToken={setToken}/> }
@@ -70,9 +64,10 @@ const App = () => {
         element={ <Register token={token} setToken={setToken}/> }
       />
 
-      <Route path="/Cart"
+      {/* <Route path="/Cart"
         element={ <Cart/> }
-      />
+      />   */}
+    </Routes>
     </>
   );
 };

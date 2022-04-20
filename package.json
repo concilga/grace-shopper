@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "nodemon index.js",
     "react": "react-scripts start",
     "build": "react-scripts build",
     "seed": "node db/seed"
@@ -15,6 +15,7 @@
   "proxy": "http://localhost:3001",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
     "dot-env": "^0.0.1",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
