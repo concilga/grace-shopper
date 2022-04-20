@@ -13,7 +13,7 @@ const Beer = ({ beers }) => {
                         <div key={beer.id} id="card">
                         <h2 id="name">{beer.name}</h2>
                         <p >{beer.description}</p>
-                        <p >{beer.image}</p>
+                        <img src={beer.image}/>
                         <p >{beer.abv}</p>
                         <p >{beer.brewery}</p>
                         <p >{beer.style}</p>

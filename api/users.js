@@ -110,8 +110,8 @@ const {
         message: "thank you for signing up",
         token: token,
       });
-    } catch ({ name, message }) {
-      next({ name, message });
+    } catch (error) {
+      console.log(error);
     }
   });
   
