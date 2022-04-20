@@ -5,6 +5,7 @@ async function createBeer({
   name,
   description,
   image,
+  background,
   abv,
   brewery,
   style,
@@ -15,11 +16,11 @@ async function createBeer({
       rows: [beer],
     } = await client.query(
       `
-          INSERT INTO beers(name, description, image, abv, brewery, style, price)
-          VALUES($1, $2, $3, $4, $5, $6, $7)
+          INSERT INTO beers(name, description, image, background, abv, brewery, style, price)
+          VALUES($1, $2, $3, $4, $5, $6, $7, $8)
           RETURNING *;
         `,
-      [name, description, image, abv, brewery, style, price]
+      [name, description, image, background, abv, brewery, style, price]
     );
 
     return beer;

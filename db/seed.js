@@ -1,7 +1,7 @@
 require("dotenv").config();
 const { getBeerSeed } = require("./beerSeed");
 const { createUser } = require("./users");
-const { addBeerToCart } = require("./cart_beers");
+const { seedCarts } = require("./cart_beers");
 const client = require("./");
 const { createBeer } = require("./beer");
 const { createCart } = require("./cart");
@@ -32,7 +32,7 @@ async function createTables() {
     await client.query(`
       CREATE TABLE beers (
         id SERIAL PRIMARY KEY, name VARCHAR(255) UNIQUE, 
-        description VARCHAR(1000), image VARCHAR(255), 
+        description VARCHAR(1000), image VARCHAR(255), background VARCHAR (255),
         brewery VARCHAR(255), style VARCHAR(255), abv FLOAT,
         price FLOAT
       );
@@ -361,11 +361,11 @@ async function createInitialCartBeers() {
         price: 12.99
       },
     ];
-    const cartBeers = await Promise.all(cartBeersToCreate.map(addBeerToCart));
+    const cartBeers = await Promise.all(cartBeersToCreate.map(seedCarts));
     console.log("Cart Beers created:");
     //console.log(cartBeers);
     console.log("Finished creating Cart Beers!");
-    console.log(await getUserBeers(3));
+    //console.log(await getUserBeers(3));
   } catch (error) {
     console.error("Error creating Cart Beers!")
     throw error;

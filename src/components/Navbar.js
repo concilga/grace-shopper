@@ -29,7 +29,7 @@ const Navbar = ({token, setToken, setUser}) => {
     return (
         <header className="main-navbar">
             <Link id="link_logo" to="/">
-                <img src="/images/logo.png" alt="" />
+                <img src="" alt="" />
             </Link>
             {token ? (
                 <div id="nav">
