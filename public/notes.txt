@@ -1,0 +1,6 @@
+line-height: 1;
+font-wright: 900; 
+margin-inline: left and right 
+margin-block: top and bottom
+also^ border
+width: min(90%, 70.5rem)
