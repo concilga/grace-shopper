@@ -148,10 +148,11 @@ async function getUserBeers(userId) {
     const purchasedCarts = await getUserPurchasedCarts(userId);
     let purchasedBeers = [];
     if(purchasedCarts) {
+      
       for(let i = 0; i < purchasedCarts.length; i++) {
         purchasedBeers.push(await getCartBeersByCartId(purchasedCarts[i].id));
       }
-  
+
       for(let j = 0; j < purchasedBeers.length; j++) {
         if(purchasedBeers[j].length === 1) {
           beers.purchaced.push(await getBeerById(purchasedBeers[j][0].beerId));

@@ -11,7 +11,7 @@ usersRouter.use((req, res, next) => {
 const {
     getUserByUsername,
     createUser
-  } = require("../db");
+  } = require("../db/export");
   
   usersRouter.get("/me", async (req, res, next) => {
     try {
@@ -68,11 +68,13 @@ const {
   });
   
   usersRouter.post("/register", async (req, res, next) => {
+    console.log(req.body, "1");
     const { username, password } = req.body;
-  
+    
+    console.log(username, "name");
     try {
       const _user = await getUserByUsername(username);
-  
+      console.log(_user, "user");
       if (_user) {
         res.status(401);
         throw {
@@ -91,7 +93,7 @@ const {
         username,
         password,
       });
-  
+      console.log(user, "user2")
       const token = jwt.sign(
         {
           id: user.id,
@@ -102,7 +104,7 @@ const {
           expiresIn: "1w",
         }
       );
-  
+      console.log(token, "token");
       res.send({
         user: user,
         message: "thank you for signing up",

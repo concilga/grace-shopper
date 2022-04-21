@@ -4,7 +4,7 @@ const {
   addBeerToCart,
   removeBeerFromCart,
   getSpecificBeerFromCart,
-} = require("../db");
+} = require("../db/export");
 
 cartBeersRouter.post("/:beerId", async (req, res, next) => {
   try {
