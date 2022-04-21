@@ -23,14 +23,23 @@ const Navbar = ({token, setToken, setUser}) => {
         }
 
 
-    lastScroll = currentScroll;
-})
+        lastScroll = currentScroll;
+    })
+
 
     return (
         <header className="main-navbar">
             <Link id="link_logo" to="/">
-                <img src="" alt="" />
+                <img src="/images/My_project14.png" alt="None" />
             </Link>
+            <button className='hamburger' id="hamburger" onClick={() =>{
+                const nav = document.getElementById('nav');
+                nav.classList.toggle('show');
+            }}>
+                <span class="material-symbols-outlined">
+                    menu
+                </span>
+            </button>
             {token ? (
                 <div id="nav">
                     <Link id="nav-link" to="/">Home</Link> 
@@ -56,6 +65,8 @@ const Navbar = ({token, setToken, setUser}) => {
             )}
         </header>
     );
+
+
 }
 
 export default Navbar;
