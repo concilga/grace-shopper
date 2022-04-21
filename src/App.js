@@ -9,7 +9,6 @@ const App = () => {
     const info = await response.json();
     setProducts(info);
   };
-
   useEffect(() => {
     fetchProducts();
   }, []);

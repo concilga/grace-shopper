@@ -23,5 +23,3 @@ const Beers = ({ getAllBeers}) => {
       
     </div>
            
-
-export default Beers;
