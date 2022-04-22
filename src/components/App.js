@@ -6,6 +6,8 @@ import Login from "./Login";
 import Register from "./Register";
 import Navbar from "./Navbar";
 import Home from "./Home";
+import Cart from "./Cart";
+import Account from "./Account";
 
 const App = () => {
   const [token, setToken] = useState("");
@@ -23,7 +25,7 @@ const App = () => {
       },
     });
     const info = await response.json();
-
+    console.log(info);
     if (info.id) {
       setUser(info);
     }
@@ -48,9 +50,7 @@ const App = () => {
 
         <Route path="/Beer" element={<Beer beers={beers} />} />
 
-        {/* <Route path="/Account"
-        element={ <Account/> }
-      /> */}
+        <Route path="/Account" element={<Account user={user} />} />
 
         <Route
           path="/Login"
@@ -62,9 +62,7 @@ const App = () => {
           element={<Register token={token} setToken={setToken} />}
         />
 
-        {/* <Route path="/Cart"
-        element={ <Cart/> }
-      />   */}
+        <Route path="/Cart" element={<Cart />} />
       </Routes>
     </>
   );
