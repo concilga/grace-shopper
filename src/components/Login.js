@@ -29,14 +29,14 @@ const Login = ({setToken}) => {
         });
         const info = await response.json();
         console.log(info);
-        if(info.error) {
-            return setCheckLogin(info.error)
+        if(info.name) {
+            return setCheckLogin(info.message)
         }
 
         setToken(info.token);
         localStorage.setItem("token", info.token);
 
-        history.push("/");
+        history("/");
     }
   
     const handleSubmit = (event) => {

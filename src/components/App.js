@@ -23,9 +23,11 @@ const App = () => {
         },
     });
     const info = await response.json();
-    
-    if(info.id) {
-        setUser(info);
+
+    console.log(info.user, "test1");
+    if(info.user) {
+        console.log(info.user, "test2");
+        setUser(info.user);
     }
   }
 
@@ -38,7 +40,7 @@ const App = () => {
   useEffect(() => {
     fetchUser();
     fetchBeer();
-  }, []);
+  }, [token]);
 
   return(
     <>
