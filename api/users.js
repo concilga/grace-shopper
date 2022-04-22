@@ -30,6 +30,8 @@ const {
   
   usersRouter.post("/login", async (req, res, next) => {
     const { username, password } = req.body;
+    console.log(username, " :username")
+    console.log(password, " :password")
   
     // request must have both
     if (!username || !password) {
@@ -41,6 +43,14 @@ const {
   
     try {
       const user = await getUserByUsername(username);
+      
+      if(!user) {
+        res.send({
+          name: "MissingCredentialsError",
+          message: "Please supply a correct username",
+        });
+      }
+
       const token = jwt.sign(
         { id: user.id, username: user.username },
         process.env.JWT_SECRET
@@ -71,7 +81,6 @@ const {
     console.log(req.body, "1");
     const { username, password } = req.body;
     
-    console.log(username, "name");
     try {
       const _user = await getUserByUsername(username);
       console.log(_user, "user");
@@ -104,14 +113,14 @@ const {
           expiresIn: "1w",
         }
       );
-      console.log(token, "token");
+      
       res.send({
         user: user,
         message: "thank you for signing up",
         token: token,
       });
     } catch (error) {
-      console.log(error);
+      res.send(error);
     }
   });
   

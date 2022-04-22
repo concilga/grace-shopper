@@ -255,6 +255,7 @@ img {
   color: white;
   text-shadow: black 2px 2px;
   text-align: center;
+  max-width: 90%;
 }
 
 .beer_header > ul {
@@ -359,6 +360,7 @@ img {
   font-size: 1.3rem;
   border-left: solid;
   padding: 10px;
+  margin-bottom: 20px;
 }
 
 #beer_description {
@@ -379,6 +381,13 @@ img {
     display: none;
   }
 
+  #beer_name {
+    font-size: 1.9rem;
+  }
+
+  #beer_info p {
+    font-size: .9rem;
+  }
 }
 
 .button1 {
@@ -394,6 +403,8 @@ img {
   color: black;
   text-align:center;
   transition: all 0.2s;
+  background-color: Transparent;
+  cursor: pointer;
 }
 
 .button1:hover{
@@ -407,3 +418,11 @@ img {
   }
 }
 
+.button1 > #link {
+  text-decoration: none;
+  color: black;
+}
+
+.button1 > #link:hover{
+  color: white;
+}
