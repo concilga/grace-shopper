@@ -1,5 +1,5 @@
 * {
-  font-family: arial,sans-serif;
+  font-family: arial, sans-serif;
   margin: 0;
 }
 
@@ -26,7 +26,7 @@ body {
 }
 
 .main-navbar {
-  background-color: #15202B;
+  background-color: #15202b;
   border-bottom: white;
   border-width: 2px;
   color: white;
@@ -53,7 +53,7 @@ body {
 }
 
 .main-navbar > #nav {
- margin-right: 50px;
+  margin-right: 50px;
 }
 
 #nav-link {
@@ -68,29 +68,25 @@ body {
   font-size: 2.4rem;
 }
 
-.scroll-down .main-navbar{
+.scroll-down .main-navbar {
   transform: translate3d(0, -100%, 0);
 }
 
-.scroll-up .main-navbar{
-  filter: drop-shadow(0 -10px 20px rgb(170,170,170))
+.scroll-up .main-navbar {
+  filter: drop-shadow(0 -10px 20px rgb(170, 170, 170));
 }
 
-.hamburger{
-  color:white;
+.hamburger {
+  color: white;
   background-color: Transparent;
   display: none;
   cursor: pointer;
-  background-repeat:no-repeat;
+  background-repeat: no-repeat;
   border: none;
 }
 
 .material-symbols-outlined {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 48
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
 }
 
 @media screen and (max-width: 860px) {
@@ -119,12 +115,12 @@ body {
   justify-content: center;
   align-items: center;
   margin-top: 125px;
-  border: #FFFFFF 1px solid;
+  border: #ffffff 1px solid;
 }
 
 #login-navbar {
   font-size: 2em;
-  color: #FFFFFF;
+  color: #ffffff;
   padding: 1em 0 0 1em;
 }
 
@@ -161,18 +157,18 @@ body {
 
 .button-19 {
   appearance: button;
-  background-color: #1899D6;
+  background-color: #1899d6;
   border: solid transparent;
   border-radius: 16px;
   border-width: 0 0 4px;
   box-sizing: border-box;
-  color: #FFFFFF;
+  color: #ffffff;
   cursor: pointer;
   display: inline-block;
-  font-family: din-round,sans-serif;
+  font-family: din-round, sans-serif;
   font-size: 15px;
   font-weight: 700;
-  letter-spacing: .8px;
+  letter-spacing: 0.8px;
   line-height: 20px;
   margin: 0;
   outline: none;
@@ -182,7 +178,7 @@ body {
   text-transform: uppercase;
   touch-action: manipulation;
   transform: translateZ(0);
-  transition: filter .2s;
+  transition: filter 0.2s;
   user-select: none;
   -webkit-user-select: none;
   vertical-align: middle;
@@ -192,7 +188,7 @@ body {
 
 .button-19:after {
   background-clip: padding-box;
-  background-color: #1CB0F6;
+  background-color: #1cb0f6;
   border: solid transparent;
   border-radius: 16px;
   border-width: 0 0 4px;
@@ -265,7 +261,7 @@ img {
   list-style: none;
 }
 
-.beer_header > ul > li{
+.beer_header > ul > li {
   color: white;
   text-shadow: black 2px 2px;
   font-size: 1.5rem;
@@ -274,7 +270,7 @@ img {
   border-left: solid;
 }
 
-.beer_header > ul > li:hover{
+.beer_header > ul > li:hover {
   color: white;
   text-shadow: black 2px 2px;
   font-size: 1.6rem;
@@ -307,8 +303,7 @@ img {
   display: flex;
   flex-direction: row;
   text-align: center;
-
-} 
+}
 
 @media screen and (max-width: 970px) {
   .beer-page > #beers > #beer_card {
@@ -393,29 +388,59 @@ img {
 .button1 {
   display: inline-block;
   padding: 0.7em 2.5em;
-  border:0.1em solid black;
-  margin:0 1em 1em 0;
-  border-radius:0.12em;
+  border: 0.1em solid black;
+  margin: 0 1em 1em 0;
+  border-radius: 0.12em;
   box-sizing: border-box;
-  text-decoration:none;
-  font-family:'Roboto',sans-serif;
-  font-weight:300;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
   color: black;
-  text-align:center;
+  text-align: center;
   transition: all 0.2s;
   background-color: Transparent;
   cursor: pointer;
 }
 
-.button1:hover{
-   color: white;
-   background-color: black;
+.button1:hover {
+  color: white;
+  background-color: black;
 }
-@media all and (max-width:30em){
-  .button1{
-    display:block;
-    margin:0.4em auto;
+@media all and (max-width: 30em) {
+  .button1 {
+    display: block;
+    margin: 0.4em auto;
   }
+}
+
+.home-page {
+  background-color: red;
+  font-size: large;
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+  position: fixed;
+  top: 250px;
+}
+.homePage {
+  background-image: url("bgg.jpg");
+
+  /* background-size: contain; */
+  position: fixed;
+  height: 1080px;
+  width: 1920px;
+}
+
+.homePage h1 {
+  font-size: 35px;
+  text-align: center;
+  margin: 25px;
+}
+
+.homePage h2 {
+  font-size: 25px;
+  text-align: center;
+  margin: 1px;
 }
 
 .button1 > #link {

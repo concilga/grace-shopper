@@ -1,8 +1,7 @@
 import { useHistory, useParams, Link } from "react-router-dom";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 const Beer = ({ beers }) => {
-
   return (
     <div className="beer-page">
         <div className="beer_header">
@@ -70,6 +69,6 @@ const Beer = ({ beers }) => {
         }
         </div>
     </div>
-  );         
-}
+  );
+};
 export default Beer;
