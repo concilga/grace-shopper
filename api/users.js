@@ -21,7 +21,7 @@ const {
           message: "Only a logged in user can access their user information!",
         });
       }
-  
+      console.log(req.user);
       res.send(req.user);
     } catch (error) {
       next(error);
@@ -30,8 +30,6 @@ const {
   
   usersRouter.post("/login", async (req, res, next) => {
     const { username, password } = req.body;
-    console.log(username, " :username")
-    console.log(password, " :password")
   
     // request must have both
     if (!username || !password) {

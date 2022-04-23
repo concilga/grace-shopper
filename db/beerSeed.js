@@ -11,6 +11,7 @@ function getBeerSeed() {
           "abv": 7.5,
           "brewery": "Fat head's",
           "style": "IPA",
+          "catagories": "IPA Staff Picks",
           "price": 11.99
         },
         {
@@ -22,6 +23,7 @@ function getBeerSeed() {
           "abv": 5.3,
           "brewery": "Fat Head's",
           "style": "Blueberry Ale",
+          "catagories": "Fruity Beer",
           "price": 10.99
         },
         {
@@ -33,6 +35,7 @@ function getBeerSeed() {
           "abv": 4.9,
           "brewery": "Fat Head's",
           "style": "IPA",
+          "catagories": "IPA",
           "price": 12.99
         },
         {
@@ -44,6 +47,7 @@ function getBeerSeed() {
           "abv": 5.4,
           "brewery": "Fat Head's",
           "style": "German Style hefe-weizen",
+          "catagories": "Assorted Ale",
           "price": 9.99
         },
         {
@@ -55,6 +59,7 @@ function getBeerSeed() {
           "abv": 6.5,
           "brewery": "Fat Head's",
           "style": "IPA",
+          "catagories": "IPA",
           "price": 11.99
         },
         {
@@ -66,6 +71,7 @@ function getBeerSeed() {
           "abv": 7.1,
           "brewery": "Fat Head's",
           "style": "Hazy IPA",
+          "catagories": "Hazy IPA",
           "price": 10.99
         },
         {
@@ -77,6 +83,7 @@ function getBeerSeed() {
           "abv": 6,
           "brewery": "Fat Head's",
           "style": "IPA",
+          "catagories": "IPA",
           "price": 12.99
         },
         {
@@ -88,6 +95,7 @@ function getBeerSeed() {
           "abv": 4.9,
           "brewery": "Fat Head's",
           "style": "Mexican Lager",
+          "catagories": "Seasonal",
           "price": 8.99
         },
         {
@@ -99,6 +107,7 @@ function getBeerSeed() {
           "abv": 5.7,
           "brewery": "Fat Head's",
           "style": "Oktoberfest Lager",
+          "catagories": "seasonal",
           "price": 7.99
         },
         {
@@ -110,6 +119,7 @@ function getBeerSeed() {
           "abv": 9,
           "brewery": "Fat Head's",
           "style": "Pumpkin Ale",
+          "catagories": "seasonal", 
           "price": 13.79
         },
         {
@@ -121,6 +131,7 @@ function getBeerSeed() {
           "abv": 4.7,
           "brewery": "Founders Brewing CO.",
           "style": "IPA",
+          "catagories": "IPA",
           "price": 10.49
         },
         {
@@ -132,6 +143,7 @@ function getBeerSeed() {
           "abv": 4.9,
           "brewery": "Founders Brewing CO.",
           "style": "Hazy IPA",
+          "catagories": "Hazy IPA",
           "price": 8.50
         },
         {
@@ -143,6 +155,7 @@ function getBeerSeed() {
           "abv": 4.6,
           "brewery": "Founders Brewing CO.",
           "style": "Wheat Ale",
+          "catagories": "Seasonal Assorted Ale",
           "price": 18.99
         },
         {
@@ -154,6 +167,7 @@ function getBeerSeed() {
           "abv": 7.2,
           "brewery": "Founders Brewing CO.",
           "style": "IPA",
+          "catagories": "IPA",
           "price": 10.49
         },
         {
@@ -165,6 +179,7 @@ function getBeerSeed() {
           "abv": 7,
           "brewery": "BELL's",
           "style": "American IPA",
+          "catagories": "IPA",
           "price": 19.99
         },
         {
@@ -176,6 +191,7 @@ function getBeerSeed() {
           "abv": 5.8,
           "brewery": "BELL's",
           "style": "Amber Ale",
+          "catagories": "Assorted Ale Staff Picks",
           "price": 10.99
         },
         {
@@ -187,6 +203,7 @@ function getBeerSeed() {
           "abv": 6.4,
           "brewery": "BELL's",
           "style": "Hazy IPA",
+          "catagories": "Hazy IPA Staff Picks",
           "price": 10.99
         },
         {
@@ -198,6 +215,7 @@ function getBeerSeed() {
           "abv": 4,
           "brewery": "BELL's",
           "style": "Wheat Ale",
+          "catagories": "Assorted Ale",
           "price": 10.99
         },
         {
@@ -209,6 +227,7 @@ function getBeerSeed() {
           "abv": 5.8,
           "brewery": "BELL's",
           "style": "American Wheat Ale",
+          "catagories": "Assorted Ale",
           "price": 12.50
         },
         {
@@ -220,6 +239,7 @@ function getBeerSeed() {
           "abv": 5.5,
           "brewery": "BELL's",
           "style": "Oktoberfest Lager",
+          "catagories": "Seasonal",
           "price": 13.75
         },
         {
@@ -231,6 +251,7 @@ function getBeerSeed() {
           "abv": 4,
           "brewery": "BELL's",
           "style": "Ginger Lime Ale",
+          "catagories": "Fruity Beer",
           "price": 12.99
         },
         {
@@ -242,17 +263,19 @@ function getBeerSeed() {
           "abv": 11,
           "brewery": "BELL's",
           "style": "Double American IPA",
+          "catagories": "IPA",
           "price": 19.99
         },
         {
           "id": 23,
           "name": "POMEGRANATE FLAMINGO FRUIT FIGHT",
           "description": "This tart fruit ale goes straight for the taste buds, with a dry finish and fruity notes.",
-          "image": "",
-          "background": "",
+          "image": "/images/Pom-Flamingo-Render-1.png",
+          "background": "/images/POM-Flamingo-Fruit-Fight_HERO.jpg",
           "abv": 4.5,
           "brewery": "BELL's",
           "style": "Sour Ale",
+          "catagories": "Fruity Beer Staff Picks",
           "price": 12.99
         },
         {
@@ -264,6 +287,7 @@ function getBeerSeed() {
           "abv": 10.2,
           "brewery": "BELL's",
           "style": "American Barley Wine Ale",
+          "catagories": "Assorted Ale",
           "price": 17.99
         },
         {
@@ -275,6 +299,7 @@ function getBeerSeed() {
           "abv": 6,
           "brewery": "BELL's",
           "style": "Lime Tart Ale",
+          "catagories": "Fruity Beer",
           "price": 14.49
         },
         {
@@ -286,6 +311,7 @@ function getBeerSeed() {
           "abv": 9,
           "brewery": "Great Lakes Brewing Co.",
           "style": "Imperial IPA",
+          "catagories": "Imerial IPA",
           "price": 16.75
         },
         {
@@ -297,6 +323,7 @@ function getBeerSeed() {
           "abv": 6,
           "brewery": "Great Lakes Brewing Co.",
           "style": "Pale Ale",
+          "catagories": "Assorted Ale",
           "price": 10.99
         },
         {
@@ -308,6 +335,7 @@ function getBeerSeed() {
           "abv": 7.5,
           "brewery": "Great Lakes Brewing Co.",
           "style": "Ale",
+          "catagories": "Seasonal",
           "price" : 11.99
         },
         {
@@ -319,6 +347,7 @@ function getBeerSeed() {
           "abv": 7.7,
           "brewery": "Great Lakes Brewing Co.",
           "style": "IPA",
+          "catagories": "IPA Staff Picks",
           "price": 10.99
         },
         {
@@ -330,6 +359,7 @@ function getBeerSeed() {
           "abv": 6.3,
           "brewery": "Great Lakes Brewing Co.",
           "style": "Irish Ale",
+          "catagories": "Assorted Ale",
           "price": 16.99 
         },
         {
@@ -341,6 +371,7 @@ function getBeerSeed() {
           "abv": 4,
           "brewery": "Great Lakes Brewing Co.",
           "style": "Citrus Wheat Ale",
+          "catagories": "Fruity Beer",
           "price": 11.99 
         },
         {
@@ -352,6 +383,7 @@ function getBeerSeed() {
           "abv": 8,
           "brewery": "Great Lakes Brewing Co.",
           "style": "Imperial IPA",
+          "catagories": "Imperial IPA",
           "price": 11.99
         },
         {
@@ -363,6 +395,7 @@ function getBeerSeed() {
           "abv": 5.8,
           "brewery": "Great Lakes Brewing Co.",
           "style": "Lager",
+          "catagories": "Staff Picks",
           "price": 10.99  
         },
         {
@@ -374,6 +407,7 @@ function getBeerSeed() {
           "abv": 6.1,
           "brewery": "Great Lakes Brewing Co.",
           "style": "Amber Lager",
+          "catagories": "Staff Picks",
           "price": 10.99  
         },
         {
@@ -385,6 +419,7 @@ function getBeerSeed() {
           "abv": 6,
           "brewery": "Great Lakes Brewing Co.",
           "style": "Porter",
+          "catagories": "Seasonal",
           "price": 10.99
         },
         {
@@ -396,6 +431,7 @@ function getBeerSeed() {
           "abv": 6.5,
           "brewery": "Great Lakes Brewing Co.",
           "style": "American IPA",
+          "catagories": "IPA",
           "price": 10.99
         },
         {
@@ -407,6 +443,7 @@ function getBeerSeed() {
           "abv": 6.7,
           "brewery": "Great Lakes Brewing Co.",
           "style": "Hazy IPA",
+          "catagories": "Hazy IPA Staff Picks",
           "price": 17.99 
         },
         {
@@ -418,6 +455,7 @@ function getBeerSeed() {
           "abv": 5.1,
           "brewery": "Great Lakes Brewing Co.",
           "style": "Lemon Ale",
+          "catagories": "Fruity Beer",
           "price": 15.98
         },
         {
@@ -429,6 +467,7 @@ function getBeerSeed() {
           "abv": 9.5,
           "brewery": "Great Lakes Brewing Co.",
           "style": "Imerial IPA",
+          "catagories": "Imperial IPA",
           "price": 13.99
         },
         {
@@ -440,17 +479,19 @@ function getBeerSeed() {
           "abv": 5.4,
           "brewery": "Great Lakes Brewing Co.",
           "style": "Lime Lager",
+          "catagories": "Seasonal Staff Picks",
           "price": 10.99
         },
         {
           "id": 41,
           "name": "NOSFERATU",
           "description": "Don’t be afraid of things that go hop in the night! Rich roasted malt flavors haunt the shadows of our Imperial Red IPA's bitter teeth.",
-          "image": "/images/ness-rendering.png",
+          "image": "/images/nosferatu-rendering.png",
           "background": "/images/nosferatu-header-500.jpg",
           "abv": 8,
           "brewery": "Great Lakes Brewing Co.",
           "style": "Imerial Red IPA",
+          "catagories": "Imperial IPA",
           "price": 13.99
         },
         {
@@ -462,6 +503,7 @@ function getBeerSeed() {
           "abv": 5.4,
           "brewery": "Great Lakes Brewing Co.",
           "style": "Oatmeal Stout",
+          "catagories": "Seasonal",
           "price": 11.99 
         },
         {
@@ -473,6 +515,7 @@ function getBeerSeed() {
           "abv": 6.5,
           "brewery": "Great Lakes Brewing Co.",
           "style": "Marzen Lager",
+          "catagories": "Seasonal",
           "price": 9.99 
         },
         {
@@ -484,6 +527,7 @@ function getBeerSeed() {
           "abv": 4.2,
           "brewery": "Great Lakes Brewing Co.",
           "style": "Lager",
+          "catagories": "Seasonal",
           "price": 9.99
         },
         {
@@ -495,6 +539,7 @@ function getBeerSeed() {
           "abv": 8,
           "brewery": "Great Lakes Brewing Co.",
           "style": "Imperial Grapefruit IPA",
+          "catagories": "Imperial IPA",
           "price": 13.99
         },
         {
@@ -505,7 +550,8 @@ function getBeerSeed() {
           "background": "/images/tidal-fury-header-500.jpg",
           "abv": 8,
           "brewery": "Great Lakes Brewing Co.",
-          "style": "Imerial Hazt IPA",
+          "style": "Imerial Hazy IPA",
+          "catagories": "Imperial IPA",
           "price": 13.99
         },
         {
@@ -517,6 +563,7 @@ function getBeerSeed() {
           "abv": 6,
           "brewery": "Great Lakes Brewing Co.",
           "style": "Tropical IPA",
+          "catagories": "Seasonal IPA",
           "price": 10.99
         },
         {
@@ -528,6 +575,7 @@ function getBeerSeed() {
           "abv": 5.9,
           "brewery": "Goose Island",
           "style": "IPA",
+          "catagories": "IPA",
           "price": 9.99
         },
         {
@@ -539,6 +587,7 @@ function getBeerSeed() {
           "abv": 7,
           "brewery": "Goose Island",
           "style": "Belgian Style Ale",
+          "catagories": "Assorted Ale",
           "price": 10.99
         },
         {
@@ -550,6 +599,7 @@ function getBeerSeed() {
           "abv": 6.5,
           "brewery": "Goose Island",
           "style": "Belgian Ale",
+          "catagories": "Assorted Ale Staff Picks",
           "price": 10.99
         },
         {
@@ -561,6 +611,7 @@ function getBeerSeed() {
           "abv": 9,
           "brewery": "Goose Island",
           "style": "Canned Cocktail",
+          "catagories": "Fruity Beer",
           "price": 15.99
         },
         {
@@ -572,6 +623,7 @@ function getBeerSeed() {
           "abv": 9,
           "brewery": "Goose Island",
           "style": "Canned Cocktail",
+          "catagories": "Staff Picks",
           "price": 15.99
         },
         {
@@ -583,6 +635,7 @@ function getBeerSeed() {
           "abv": 9,
           "brewery": "Goose Island",
           "style": "Canned Cocktail",
+          "catagories": "Staff Picks",
           "price": 15.99
         },
         {
@@ -594,6 +647,7 @@ function getBeerSeed() {
           "abv": 5.2,
           "brewery": "New Belgium",
           "style": "Amber Ale",
+          "catagories": "Assorted Ale Staff Picks",
           "price": 11.99
         },
         {
@@ -605,17 +659,19 @@ function getBeerSeed() {
           "abv": 7,
           "brewery": "New Belgium",
           "style": "IPA",
+          "catagories": "IPA",
           "price": 14.99
         },
         {
           "id": 56,
           "name": "VooDoo Ranger Imperial IPA",
           "description": "New Belgium Voodoo Ranger Imperial IPA is a rare blend of choice hops that creates an explosion of fresh-cut pine and citrus flavors for a complex, rich and delicious flavor.",
-          "image": "/images/beer-vr-imperial-ipa-desktop (1).png",
+          "image": "/images/beer-vr-imperial-ipa-desktop.png",
           "background": "/images/vrimp_tablet-100.jpg",
           "abv": 9,
           "brewery": "New Belgium",
           "style": "Imperial IPA",
+          "catagories": "Imperial IPA",
           "price": 16.99
         },
         {
@@ -627,6 +683,7 @@ function getBeerSeed() {
           "abv": 7.5,
           "brewery": "New Belgium",
           "style": "Hazy IPA",
+          "catagories": "Hazy IPA",
           "price": 15.99
         }
     ]

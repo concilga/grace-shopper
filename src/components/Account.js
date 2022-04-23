@@ -2,7 +2,7 @@ import { useHistory, useParams, Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 
 const Account = ({ token, user }) => {
-  console.log(user, "user");
+
   if (!user) {
     return <></>;
   }
@@ -17,15 +17,20 @@ const Account = ({ token, user }) => {
       },
     });
     const info = await response.json();
-    console.log(info);
+
+    if(info.name) {
+      console.log(info.name);
+    }
+    
+    console.log(info, "info test");
     setUserBeer(info);
   }
-
+  
   useEffect(() => {
     fetchUserBeers();
-  }, []);
+  }, [token]);
+  console.log(userBeer, "userBeer");
 
-  console.log(userBeer);
   return (
     <div>
       <h1>Working!</h1>
