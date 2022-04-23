@@ -6,6 +6,8 @@ import Login  from './Login';
 import Register from './Register';
 import Navbar from "./Navbar";
 import Home from "./Home";
+import Account from "./Account";
+import BeerDetail from "./BeerDetail";
 
 const App = () => {
   const [token, setToken] = useState("");
@@ -24,10 +26,14 @@ const App = () => {
     });
     const info = await response.json();
 
-    console.log(info.user, "test1");
-    if(info.user) {
-        console.log(info.user, "test2");
-        setUser(info.user);
+    if(info.name){
+      console.log(info.name);
+    }
+
+    console.log(info, "test1");
+    if(info.id) {
+        console.log(info, "test2");
+        setUser(info);
     }
   }
 
@@ -41,7 +47,7 @@ const App = () => {
     fetchUser();
     fetchBeer();
   }, [token]);
-
+  console.log(user);
   return(
     <>
     <Navbar token={token} setToken={setToken} setUser={setUser}/>
@@ -54,9 +60,13 @@ const App = () => {
         element={ <Beer beers={beers}/> }
       />
 
-      {/* <Route path="/Account"
-        element={ <Account/> }
-      /> */}
+      <Route path="/BeerDetail/:id"
+        element={ <BeerDetail beers={beers} token={token} user={user}/> }
+      />
+
+      <Route path="/Account"
+        element={ <Account beers={beers} user={user}/> }
+      />
 
       <Route path="/Login"
         element={ <Login token={token} setToken={setToken}/> }

@@ -87,6 +87,7 @@ async function getUserById(id) {
     );
 
     delete user.password;
+    //console.log(user, "test getByID")
     return user;
   } catch (error) {
     throw error;

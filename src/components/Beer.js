@@ -56,7 +56,7 @@ const Beer = ({ beers }) => {
                                 </div>
                                 <div>
                                     <button className="button1">
-                                        <Link to={`/BeerDetail/${beer._id}`} id="link">Learn More</Link> 
+                                        <Link to={`/BeerDetail/${beer.id}`} id="link">Learn More</Link> 
                                     </button>
                                     <button className="button1">Add To Cart</button>
                                 </div>
