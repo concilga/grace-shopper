@@ -61,20 +61,24 @@ const App = () => {
         <Route path="/BeerDetail/:id"
            element={ <BeerDetail beers={beers} token={token} user={user}/> }
         />
-        <Route path="/Account"
-          element={ <Account beers={beers} user={user}/> }
-        />
+        
         <Route
           path="/Login"
           element={<Login token={token} setToken={setToken} />}
         />
 
-        <Route
-          path="/Register"
-          element={<Register token={token} setToken={setToken} />}
+        <Route path="/Account"
+          element={ <Account beers={beers} user={user} token={token}/> }
         />
-        <Route path="/Cart" element={<Cart />} />
-      </Routes>
+
+        <Route path="/Register"
+          element={ <Register token={token} setToken={setToken}/> }
+        />
+
+      {/* <Route path="/Cart"
+        element={ <Cart/> }
+      />   */}
+    </Routes>
     </>
   );
 };
