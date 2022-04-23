@@ -26,10 +26,8 @@ const App = () => {
     });
     const info = await response.json();
 
-    console.log(info.user, "test1");
-    if(info.user) {
-        console.log(info.user, "test2");
-        setUser(info.user);
+    if (info.user) {
+      setUser(info.user);
     }
   };
 
