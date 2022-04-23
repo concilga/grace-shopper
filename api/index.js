@@ -1,7 +1,7 @@
 const express = require("express");
 const apiRouter = express.Router();
 const jwt = require("jsonwebtoken");
-const { getUserById } = require("../db");
+const { getUserById } = require("../db/users");
 const { JWT_SECRET } = process.env;
 
 // set `req.user` if possible
@@ -9,6 +9,7 @@ apiRouter.use(async (req, res, next) => {
   const prefix = "Bearer ";
   const auth = req.header("Authorization");
 
+  //console.log (auth, "auth");
   if (!auth) {
     next();
   } else if (auth.startsWith(prefix)) {
@@ -18,7 +19,9 @@ apiRouter.use(async (req, res, next) => {
       const { id } = jwt.verify(token, JWT_SECRET);
 
       if (id) {
+        
         req.user = await getUserById(id);
+        //console.log(req.user, "user!!!!!!!!!!!");
         next();
       }
     } catch ({ name, message }) {
