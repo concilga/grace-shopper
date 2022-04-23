@@ -148,7 +148,6 @@ async function getUserBeers(userId) {
     const purchasedCarts = await getUserPurchasedCarts(userId);
     let purchasedBeers = [];
     if(purchasedCarts) {
-      
       for(let i = 0; i < purchasedCarts.length; i++) {
         purchasedBeers.push(await getCartBeersByCartId(purchasedCarts[i].id));
       }

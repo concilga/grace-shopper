@@ -251,6 +251,7 @@ img {
   color: white;
   text-shadow: black 2px 2px;
   text-align: center;
+  max-width: 90%;
 }
 
 .beer_header > ul {
@@ -354,6 +355,7 @@ img {
   font-size: 1.3rem;
   border-left: solid;
   padding: 10px;
+  margin-bottom: 20px;
 }
 
 #beer_description {
@@ -373,6 +375,14 @@ img {
   #beer_description {
     display: none;
   }
+
+  #beer_name {
+    font-size: 1.9rem;
+  }
+
+  #beer_info p {
+    font-size: .9rem;
+  }
 }
 
 .button1 {
@@ -388,6 +398,8 @@ img {
   color: black;
   text-align: center;
   transition: all 0.2s;
+  background-color: Transparent;
+  cursor: pointer;
 }
 
 .button1:hover {
@@ -430,3 +442,82 @@ img {
   text-align: center;
   margin: 1px;
 }
+
+.button1 > #link {
+  text-decoration: none;
+  color: black;
+}
+
+.button1 > #link:hover{
+  color: white;
+}
+
+#ibeer_detail_page {
+  background-color: #15202B;
+  max-height: 100%;
+  display: grid;
+  grid-template-columns: 150px 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 50px 1fr 1fr 1fr;
+}
+
+#ibeer_background {
+  grid-column: 1 / 5;
+  grid-row: 2 / 4;
+}
+
+#ibeer_background > img {
+  width: 100%;
+  min-height: 80%;
+  max-height: 700px;
+  padding-bottom: 100px;
+}
+
+#ibeer_image {
+  grid-column: 3 / 5;
+  grid-row: 2 / 4;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+#ibeer_image > img {
+  max-height: 75%;
+}
+
+#ibeer_name_section {
+  grid-column: 5 / 8;
+  grid-row: 2 / 4;
+  background-color: antiquewhite;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: solid white;
+  border-width: 20px;
+}
+
+#ibeer_title {
+  color: white;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  font-size: 5rem;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+#ibeer_info_section {
+  color: white;
+  grid-column: 2 / 7;
+  grid-row: 4 / 5;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#ibeer_info_description {
+  width: 50%;
+  font-size: 1.5rem;
+  text-align: center;
+  margin-left: 25px;
+}
+
