@@ -87,12 +87,14 @@ async function getUserById(id) {
     );
 
     delete user.password;
+    //console.log(user, "test getByID")
     return user;
   } catch (error) {
     throw error;
   }
 }
 async function getUserByUsername(username) {
+  
   try {
     const {
       rows: [user],
@@ -104,7 +106,7 @@ async function getUserByUsername(username) {
         `,
       [username]
     );
-
+    
     return user;
   } catch (error) {
     throw error;

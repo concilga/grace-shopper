@@ -55,8 +55,10 @@ const Beer = ({ beers }) => {
                                     <p>{beer.description}</p>
                                 </div>
                                 <div>
-                                    <a href="" className="button1">Learn More</a>
-                                    <a href="" className="button1">Add To Cart</a>
+                                    <button className="button1">
+                                        <Link to={`/BeerDetail/${beer.id}`} id="link">Learn More</Link> 
+                                    </button>
+                                    <button className="button1">Add To Cart</button>
                                 </div>
                             </div>
                         </div>

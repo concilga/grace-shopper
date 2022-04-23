@@ -16,9 +16,9 @@ userBeersRouter.get("/", async (req, res, next) => {
       });
     }
 
-    const userId = req.user.id;
-
-    const usersBeers = getUserBeers(userId);
+    const userId = req.user.id    
+    const usersBeers = await getUserBeers(userId);
+    
     res.send(usersBeers);
   } catch (error) {
     next(error);
