@@ -131,7 +131,7 @@ async function getUserBeers(userId) {
     let beers = {
       favorite: [],
       scored: [],
-      purchaced: []
+      purchased: []
     }
 
     for(let l = 0; l < userBeers.length; l++) {
@@ -154,10 +154,10 @@ async function getUserBeers(userId) {
 
       for(let j = 0; j < purchasedBeers.length; j++) {
         if(purchasedBeers[j].length === 1) {
-          beers.purchaced.push(await getBeerById(purchasedBeers[j][0].beerId));
+          beers.purchased.push(await getBeerById(purchasedBeers[j][0].beerId));
         } else {
           for(let k = 0; k < purchasedBeers[j].length; k++) {
-            beers.purchaced.push(await getBeerById(purchasedBeers[j][k].beerId));
+            beers.purchased.push(await getBeerById(purchasedBeers[j][k].beerId));
           }
         }
       }

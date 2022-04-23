@@ -53,14 +53,27 @@ const BeerDetail = ({token, user}) => {
             </div>
             <div id="ibeer_info_section">
                 <div id="ibeer_info_description">
+                    <h3>Brewers Note's</h3>
                     <p>{individualBeer[0].description}</p>
                 </div>
                 <div id="ibeer_info_detail">
-                    <div id="ibeer_info">
-                        <p>{individualBeer[0].abv}% ABV</p>
-                        <p>{individualBeer[0].brewery}</p>
-                        <p>{individualBeer[0].style}</p>
-                        <p>${individualBeer[0].price}</p>
+                    <div>
+                        <p id="title_p">ABV:</p>
+                        <p id="data_p">{individualBeer[0].abv}%</p> 
+                    </div>
+                    <div>
+                        <p id="title_p">Brewery:</p>
+                        <p id="data_p">{individualBeer[0].brewery}</p>
+                    </div>
+                    <div>
+                        <p id="title_p">Style</p>
+                        <p id="divide">|</p>
+                        <p id="data_p">{individualBeer[0].style}</p>
+                    </div>
+                    <div>
+                        <p id="title_p">Price</p>
+                        <p id="divide">|</p>
+                        <p id="data_p">${individualBeer[0].price}</p>
                     </div>
                 </div>
             </div>
