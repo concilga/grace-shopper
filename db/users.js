@@ -106,7 +106,7 @@ async function getUserByUsername(username) {
         `,
       [username]
     );
-    console.log(user, "testing");
+    
     return user;
   } catch (error) {
     throw error;

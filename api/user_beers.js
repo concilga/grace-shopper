@@ -8,7 +8,6 @@ const {
 } = require("../db/export");
 
 userBeersRouter.get("/", async (req, res, next) => {
-  console.log(req.user, "req.user");
   try {
     if (!req.user) {
       return next({
@@ -17,10 +16,9 @@ userBeersRouter.get("/", async (req, res, next) => {
       });
     }
 
-    console.log(userId);
-
-    const usersBeers = getUserBeers(userId);
-    console.log(usersBeers)
+    const userId = req.user.id    
+    const usersBeers = await getUserBeers(userId);
+    
     res.send(usersBeers);
   } catch (error) {
     next(error);

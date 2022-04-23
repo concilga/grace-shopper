@@ -65,7 +65,7 @@ const App = () => {
       />
 
       <Route path="/Account"
-        element={ <Account beers={beers} user={user}/> }
+        element={ <Account beers={beers} user={user} token={token}/> }
       />
 
       <Route path="/Login"

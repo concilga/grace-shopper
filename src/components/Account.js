@@ -10,24 +10,24 @@ const Account = ({ token, user }) => {
 
   async function fetchUserBeers() {
     const response = await fetch("/api/user_beers", {
-      method: "GET",
       headers: {
-        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
     });
-    const info = await response.json();
 
+    const info = await response.json();
+    console.log(info, "info test");
     if(info.name) {
       console.log(info.name);
     }
     
-    console.log(info, "info test");
     setUserBeer(info);
   }
   
   useEffect(() => {
     fetchUserBeers();
   }, [token]);
+
   console.log(userBeer, "userBeer");
 
   return (

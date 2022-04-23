@@ -21,7 +21,7 @@ const {
           message: "Only a logged in user can access their user information!",
         });
       }
-      console.log(req.user);
+      
       res.send(req.user);
     } catch (error) {
       next(error);
@@ -76,12 +76,11 @@ const {
   });
   
   usersRouter.post("/register", async (req, res, next) => {
-    console.log(req.body, "1");
     const { username, password } = req.body;
     
     try {
       const _user = await getUserByUsername(username);
-      console.log(_user, "user");
+
       if (_user) {
         res.status(401);
         throw {
@@ -100,7 +99,7 @@ const {
         username,
         password,
       });
-      console.log(user, "user2")
+
       const token = jwt.sign(
         {
           id: user.id,
