@@ -50,21 +50,28 @@ const Account = ({ token, user }) => {
       <div>
         <h1>Past Purchases</h1>
       </div>
-      <hr></hr>
       <div>
-        <h1>Favorites</h1> {
-        favorite[0] ? (
-                favorite.map((beer) => {
-                    return (
-                        <div key={beer.id} >
-                            <div id="beer_img_section">
-                                <img src={beer.image} id="beer_img"/>
-                            </div>
-                            <div id="beer_info_section">
-                                <div id="beer_name_section">
-                                    <h2 id="beer_name">{beer.name}</h2>
-      </div>
-      <hr></hr>
+        <h1>Favorites</h1> 
+          {favorite[0] ? (
+            favorite.map((beer) => {
+              return (
+                <div key={beer.id} >
+                  <div id="beer_img_section">
+                    <img src={beer.image} id="beer_img"/>
+                  </div>
+                  <div id="beer_info_section">
+                    <div id="beer_name_section">
+                      <h2 id="beer_name">{beer.name}</h2>
+                    </div>
+                  </div>
+                </div>
+              );
+            }) 
+            ) : (
+              null
+            )
+          }
+        </div>
       <div>
         <h1>Previously Scored</h1>
       </div>
