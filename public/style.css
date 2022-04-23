@@ -477,6 +477,7 @@ img {
   font-size: 5rem;
   margin-bottom: 25px;
   text-align: center;
+  text-transform: uppercase;
 }
 
 #ibeer_info_section {
@@ -496,4 +497,20 @@ img {
   margin-left: 25px;
 }
 
+#ibeer_info_description > h3 {
+  text-decoration: underline;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
 
+#ibeer_info_detail {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5rem;
+}
+
+#ibeer_info_detail > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

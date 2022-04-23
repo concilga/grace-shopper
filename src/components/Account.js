@@ -6,7 +6,7 @@ const Account = ({ token, user }) => {
   if (!user) {
     return <></>;
   }
-  const userName = props.user;
+  const {userName} = user;
   const [userBeer, setUserBeer] = useState({});
 
   async function fetchUserBeers() {
