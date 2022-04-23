@@ -1,7 +1,8 @@
 import { useHistory, useParams, Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
+
 const Account = ({ token, user }) => {
-  
+
   if (!user) {
     return <></>;
   }
@@ -36,4 +37,5 @@ const Account = ({ token, user }) => {
     </div>
   );
 };
+
 export default Account;

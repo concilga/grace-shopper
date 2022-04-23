@@ -1,28 +1,30 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import { Route, Routes } from 'react-router-dom';
-import Beer from './Beer';
-import Login  from './Login';
-import Register from './Register';
+import { Route, Routes } from "react-router-dom";
+import Beer from "./Beer";
+import Login from "./Login";
+import Register from "./Register";
 import Navbar from "./Navbar";
 import Home from "./Home";
 import Account from "./Account";
 import BeerDetail from "./BeerDetail";
+import Cart from "./Cart";
+
 
 const App = () => {
   const [token, setToken] = useState("");
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState(null);
   const [beers, setBeer] = useState([]);
 
-  const fetchUser = async() => {
+  const fetchUser = async () => {
     const isToken = localStorage.getItem("token");
-    if(isToken) {
-        setToken(isToken);
+    if (isToken) {
+      setToken(isToken);
     }
-    const response = await fetch('/api/users/me', {
-        headers: {
-            Authorization: `Bearer ${isToken}`,
-        },
+    const response = await fetch("/api/users/me", {
+      headers: {
+        Authorization: `Bearer ${isToken}`,
+      },
     });
     const info = await response.json();
 
@@ -35,7 +37,7 @@ const App = () => {
         console.log(info, "test2");
         setUser(info);
     }
-  }
+  };
 
   const fetchBeer = async () => {
     const response = await fetch("/api/beer");
@@ -47,39 +49,32 @@ const App = () => {
     fetchUser();
     fetchBeer();
   }, [token]);
-  console.log(user);
-  return(
+
+  return (
     <>
-    <Navbar token={token} setToken={setToken} setUser={setUser}/>
-    <Routes>
-      <Route exact path="/"
-        element={ <Home/> }
-      />
+      <Navbar token={token} setToken={setToken} setUser={setUser} />
+      <Routes>
+        <Route exact path="/" element={<Home />} />
 
-      <Route path="/Beer"
-        element={ <Beer beers={beers}/> }
-      />
+        <Route path="/Beer" element={<Beer beers={beers} />} />
 
-      <Route path="/BeerDetail/:id"
-        element={ <BeerDetail beers={beers} token={token} user={user}/> }
-      />
+        <Route path="/BeerDetail/:id"
+           element={ <BeerDetail beers={beers} token={token} user={user}/> }
+        />
+        <Route path="/Account"
+          element={ <Account beers={beers} user={user}/> }
+        />
+        <Route
+          path="/Login"
+          element={<Login token={token} setToken={setToken} />}
+        />
 
-      <Route path="/Account"
-        element={ <Account beers={beers} user={user}/> }
-      />
-
-      <Route path="/Login"
-        element={ <Login token={token} setToken={setToken}/> }
-      />
-
-      <Route path="/Register"
-        element={ <Register token={token} setToken={setToken}/> }
-      />
-
-      {/* <Route path="/Cart"
-        element={ <Cart/> }
-      />   */}
-    </Routes>
+        <Route
+          path="/Register"
+          element={<Register token={token} setToken={setToken} />}
+        />
+        <Route path="/Cart" element={<Cart />} />
+      </Routes>
     </>
   );
 };
