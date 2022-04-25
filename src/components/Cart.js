@@ -28,16 +28,11 @@ const Cart = () => {
   //Use the Cart.js via api for the requests on buttons.
 
   async function removeBeerFromCart(beerId, userId) {
-    const response = await fetch(`/api/cart_beers/${(beerId, userId)}`, {
+    const response = await fetch(`/api/cart_beers/${beerId}`, {
       method: "PATCH",
       headers: {
-        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({
-        userId: userId,
-        beerId: beerId,
-      }),
     });
     const info = await response.json();
     console.log(info);
@@ -116,4 +111,5 @@ const Cart = () => {
     </section>
   );
 };
+
 export default Cart;

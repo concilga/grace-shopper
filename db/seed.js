@@ -8,7 +8,6 @@ const { createCart } = require("./cart");
 const { createUserBeers } = require("./user_beers");
 const { getUserBeers } = require("./user_beers");
 
-
 const dropTables = async () => {
   try {
     console.log("Starting to drop tables...");
@@ -18,13 +17,13 @@ const dropTables = async () => {
       DROP TABLE IF EXISTS carts;
       DROP TABLE IF EXISTS users;
       DROP TABLE IF EXISTS beers; 
-    `)
+    `);
     console.log("Finished dropping tables!");
   } catch (error) {
     console.error("Error while dropping tables!");
     throw error;
   }
-}
+};
 
 async function createTables() {
   try {
@@ -78,20 +77,20 @@ async function createInitialUsers() {
   console.log("Starting to create users...");
   try {
     const usersToCreate = [
-      { 
-        username: "colton", 
-        password: "password123", 
+      {
+        username: "colton",
+        password: "password123",
       },
-      { 
-        username: "Ty", 
+      {
+        username: "Ty",
         password: "password321",
       },
-      { 
-        username: "Greg", 
+      {
+        username: "Greg",
         password: "123password",
       },
-      { 
-        username: "Bob", 
+      {
+        username: "Bob",
         password: "321password",
       },
     ];
@@ -109,9 +108,7 @@ async function createInitialBeers() {
   try {
     const beersToCreate = getBeerSeed();
     console.log("Starting to create beers...");
-    const beers = await Promise.all(
-      beersToCreate.map(createBeer)
-    );
+    const beers = await Promise.all(beersToCreate.map(createBeer));
 
     console.log("beers created:");
     //console.log(beers);
@@ -126,41 +123,41 @@ async function createInitialCarts() {
   console.log("Starting to create Carts...");
   try {
     const cartsToCreate = [
-      { 
+      {
         userId: 1,
-        isPurchased: false
+        isPurchased: false,
       },
-      { 
+      {
         userId: 1,
-        isPurchased: true
+        isPurchased: true,
       },
-      { 
+      {
         userId: 2,
-        isPurchased: true
+        isPurchased: true,
       },
-      { 
+      {
         userId: 2,
-        isPurchased: false
+        isPurchased: false,
       },
-      { 
+      {
         userId: 3,
-        isPurchased: true
+        isPurchased: true,
       },
-      { 
+      {
         userId: 3,
-        isPurchased: true
+        isPurchased: true,
       },
-      { 
+      {
         userId: 3,
-        isPurchased: false
+        isPurchased: false,
       },
-      { 
+      {
         userId: 4,
-        isPurchased: true
+        isPurchased: true,
       },
-      { 
+      {
         userId: 4,
-        isPurchased: false
+        isPurchased: false,
       },
     ];
     const carts = await Promise.all(cartsToCreate.map(createCart));
@@ -168,7 +165,7 @@ async function createInitialCarts() {
     //console.log(carts);
     console.log("Finished creating Carts!");
   } catch (error) {
-    console.error("Error creating Carts!")
+    console.error("Error creating Carts!");
     throw error;
   }
 }
@@ -177,89 +174,89 @@ async function createInitialUserBeers() {
   console.log("Starting to create userBeers...");
   try {
     const userBeersToCreate = [
-      { 
+      {
         userId: 1,
         beerId: 3,
         favorite: false,
-        score: 75
+        score: 75,
       },
-      { 
+      {
         userId: 1,
         beerId: 7,
         favorite: true,
-        score: 95
+        score: 95,
       },
-      { 
+      {
         userId: 1,
         beerId: 13,
         favorite: true,
-        score: null
+        score: null,
       },
-      { 
+      {
         userId: 1,
         beerId: 10,
         favorite: true,
-        score: 90
+        score: 90,
       },
-      { 
+      {
         userId: 2,
         beerId: 23,
         favorite: false,
-        score: 50
+        score: 50,
       },
-      { 
+      {
         userId: 2,
         beerId: 2,
         favorite: true,
-        score: 87
+        score: 87,
       },
-      { 
+      {
         userId: 2,
         beerId: 15,
         favorite: true,
-        score: null
+        score: null,
       },
-      { 
+      {
         userId: 3,
         beerId: 6,
         favorite: true,
-        score: null
+        score: null,
       },
-      { 
+      {
         userId: 3,
         beerId: 12,
         favorite: false,
-        score: 85
+        score: 85,
       },
-      { 
+      {
         userId: 3,
         beerId: 14,
         favorite: true,
-        score: 97
+        score: 97,
       },
-      { 
+      {
         userId: 3,
         beerId: 19,
         favorite: true,
-        score: 93
+        score: 93,
       },
-      { 
+      {
         userId: 4,
         beerId: 22,
         favorite: false,
-        score: 91
+        score: 91,
       },
-      { 
+      {
         userId: 4,
         beerId: 4,
         favorite: true,
-        score: null
+        score: null,
       },
-      { 
+      {
         userId: 4,
         beerId: 20,
         favorite: true,
-        score: null
+        score: null,
       },
     ];
     const userBeers = await Promise.all(userBeersToCreate.map(createUserBeers));
@@ -267,7 +264,7 @@ async function createInitialUserBeers() {
     //console.log(userBeers);
     console.log("Finished creating User Beers!");
   } catch (error) {
-    console.error("Error creating User Beers!")
+    console.error("Error creating User Beers!");
     throw error;
   }
 }
@@ -276,89 +273,89 @@ async function createInitialCartBeers() {
   console.log("Starting to create Cart Beers...");
   try {
     const cartBeersToCreate = [
-      { 
+      {
         cartId: 1,
         beerId: 13,
         quantity: 2,
-        price: 10.97
+        price: 10.97,
       },
-      { 
+      {
         cartId: 2,
         beerId: 3,
         quantity: 1,
-        price: 12.99
+        price: 12.99,
       },
-      { 
+      {
         cartId: 2,
         beerId: 7,
         quantity: 1,
-        price: 13.99
+        price: 13.99,
       },
-      { 
+      {
         cartId: 2,
         beerId: 10,
         quantity: 1,
-        price: 12.79
+        price: 12.79,
       },
-      { 
+      {
         cartId: 3,
         beerId: 23,
         quantity: 1,
-        price: 500
+        price: 500,
       },
-      { 
+      {
         cartId: 3,
         beerId: 2,
         quantity: 2,
-        price: 11.99
+        price: 11.99,
       },
-      { 
+      {
         cartId: 4,
         beerId: 15,
         quantity: 2,
-        price: 20.99
+        price: 20.99,
       },
-      { 
+      {
         cartId: 5,
         beerId: 19,
         quantity: 1,
-        price: 13.99
+        price: 13.99,
       },
-      { 
+      {
         cartId: 5,
         beerId: 12,
         quantity: 3,
-        price: 9.99
+        price: 9.99,
       },
-      { 
+      {
         cartId: 6,
         beerId: 14,
         quantity: 3,
-        price: 9.97
+        price: 9.97,
       },
-      { 
+      {
         cartId: 7,
         beerId: 6,
         quantity: 1,
-        price: 12.99
+        price: 12.99,
       },
-      { 
+      {
         cartId: 8,
         beerId: 22,
         quantity: 2,
-        price: 10.99
+        price: 10.99,
       },
-      { 
+      {
         cartId: 9,
         beerId: 20,
         quantity: 1,
-        price: 17.99
+        price: 17.99,
       },
-      { 
+      {
         cartId: 9,
         beerId: 4,
         quantity: 1,
-        price: 12.99
+        price: 12.99,
       },
     ];
     const cartBeers = await Promise.all(cartBeersToCreate.map(seedCarts));
@@ -367,7 +364,7 @@ async function createInitialCartBeers() {
     console.log("Finished creating Cart Beers!");
     //console.log(await getUserBeers(3));
   } catch (error) {
-    console.error("Error creating Cart Beers!")
+    console.error("Error creating Cart Beers!");
     throw error;
   }
 }

@@ -73,7 +73,8 @@ cartBeersRouter.patch("/:beerId", async (req, res, next) => {
     }
 
     const userId = req.user.id;
-    const { beerId, quantity } = req.body;
+    const beerId = req.params.beerId;
+    const { quantity } = req.body;
     const beer = {
       quantity,
       beerId,

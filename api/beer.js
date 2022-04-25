@@ -7,14 +7,13 @@ const {
   getAllBeers,
 } = require("../db/export");
 
-beerRouter.get("/", async (req, res) => {
+beerRouter.get("/", async (req, res, next) => {
   try {
     const beer = await getAllBeers();
     res.send(beer);
   } catch (error) {
     next(error);
   }
-  
 });
 
 beerRouter.post("/", async (req, res, next) => {
