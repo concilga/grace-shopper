@@ -7,19 +7,19 @@ async function getUserProfilePic() {
 
   switch (profilePicNum) {
     case 0:
-      profilePic = "https://images.pexels.com/photos/159291/beer-machine-alcohol-brewery-159291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
+      profilePic = "https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1631&q=80";
       break;
     case 1: 
-      profilePic = "https://images.pexels.com/photos/52994/beer-ale-bitter-fermented-52994.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
+      profilePic = "https://images.unsplash.com/photo-1474552226712-ac0f0961a954?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80";
       break;
     case 2: 
       profilePic = "https://images.pexels.com/photos/2599245/pexels-photo-2599245.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
       break;
     case 3: 
-      profilePic = "https://images.pexels.com/photos/1400255/pexels-photo-1400255.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
+      profilePic = "https://images.unsplash.com/photo-1485981133625-f1a03c887f0a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80";
       break;
     case 4: 
-      profilePic = "https://images.pexels.com/photos/1267361/pexels-photo-1267361.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+      profilePic = "https://images.pexels.com/photos/220429/pexels-photo-220429.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
       break;
     default:
       console.log("There was an error!")
