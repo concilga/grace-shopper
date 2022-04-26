@@ -381,7 +381,7 @@ img {
   }
 
   #beer_info p {
-    font-size: .9rem;
+    font-size: 0.9rem;
   }
 }
 
@@ -448,12 +448,12 @@ img {
   color: black;
 }
 
-.button1 > #link:hover{
+.button1 > #link:hover {
   color: white;
 }
 
 #ibeer_detail_page {
-  background-color: #15202B;
+  background-color: #15202b;
   max-height: 100%;
   display: grid;
   grid-template-columns: 150px 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -498,7 +498,8 @@ img {
 
 #ibeer_title {
   color: white;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
   font-size: 5rem;
   margin-bottom: 25px;
   text-align: center;
@@ -521,3 +522,50 @@ img {
   margin-left: 25px;
 }
 
+/* Ty's CSS for Home Page BELOW */
+
+.homePage {
+  position: absolute;
+  width: 750px;
+  height: 300px;
+  margin: 20% 30%;
+
+  text-align: center;
+  border-radius: 25px;
+  background-image: url("bgg.jpg");
+  /* opacity: 0.9; */
+}
+.homePage h1 {
+  text-align: center;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 60px;
+}
+.homePage h1 span {
+  color: #00fecb;
+}
+.homePage a {
+  border: 1px solid #fff;
+  padding: 10px 25px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 14px;
+  margin-bottom: 30px;
+  margin-right: 425px;
+  display: inline-block;
+  color: #fff;
+}
+.homePage a:hover {
+  background: #fff;
+  color: #333;
+}
+
+.logo {
+  float: left;
+  opacity: 0.9;
+}
+.logo img {
+  width: 100%;
+  padding: 15px 0;
+}
+/*resposive*/
