@@ -33,7 +33,7 @@ async function createTables() {
       CREATE TABLE beers (
         id SERIAL PRIMARY KEY, name VARCHAR(255) UNIQUE, 
         description VARCHAR(1000), image VARCHAR(255), background VARCHAR (255),
-        brewery VARCHAR(255), style VARCHAR(255), abv FLOAT,
+        brewery VARCHAR(255), style VARCHAR(255), catagories VARCHAR(255), abv FLOAT,
         price FLOAT
       );
 

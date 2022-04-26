@@ -57,24 +57,26 @@ const BeerDetail = ({token, user}) => {
                     <p>{individualBeer[0].description}</p>
                 </div>
                 <div id="ibeer_info_detail">
-                    <div>
-                        <p id="title_p">ABV:</p>
-                        <p id="data_p">{individualBeer[0].abv}%</p> 
+                    <div id="itop-detail">
+                        <div id="iabv">
+                            <p id="title_p">ABV:</p>
+                            <p id="data_p">{individualBeer[0].abv}%</p> 
+                        </div>
+                        <div id="istyle">
+                            <p id="title_p">Style:</p>
+                            <p id="data_p">{individualBeer[0].style}</p>
+                        </div>
                     </div>
-                    <div>
-                        <p id="title_p">Brewery:</p>
-                        <p id="data_p">{individualBeer[0].brewery}</p>
-                    </div>
-                    <div>
-                        <p id="title_p">Style</p>
-                        <p id="divide">|</p>
-                        <p id="data_p">{individualBeer[0].style}</p>
-                    </div>
-                    <div>
-                        <p id="title_p">Price</p>
-                        <p id="divide">|</p>
-                        <p id="data_p">${individualBeer[0].price}</p>
-                    </div>
+                    <div id="ibottom-detail">
+                       <div id="ibrewery">
+                            <p id="title_p">Brewery:</p>
+                            <p id="data_p">{individualBeer[0].brewery}</p>
+                        </div>
+                        <div id="iprice">
+                            <p id="title_p">Price</p>
+                            <p id="data_p">${individualBeer[0].price}</p>
+                        </div> 
+                    </div>   
                 </div>
             </div>
         </div>

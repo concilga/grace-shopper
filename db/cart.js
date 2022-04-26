@@ -35,19 +35,19 @@ async function getCartById(id) {
   }
 }
 
-async function getUserOpenCart(userId) {
-  try {
-    const { rows: [cart] } = await client.query(`
-        SELECT * FROM carts
-        WHERE "userId"=$1
-        AND "isPurchased"=$2;
-      `, [userId, false]);
+// async function getUserOpenCart(userId) {
+//   try {
+//     const { rows: [cart] } = await client.query(`
+//         SELECT * FROM carts
+//         WHERE "userId"=$1
+//         AND "isPurchased"=$2;
+//       `, [userId, false]);
 
-    return [cart];
-  } catch (error) {
-    throw error;
-  }
-}
+//     return [cart];
+//   } catch (error) {
+//     throw error;
+//   }
+// }
 
 async function getUserPurchasedCarts(userId) {
   try {
@@ -110,7 +110,7 @@ async function purchaseCart(cartId) {
 module.exports = {
   purchaseCart,
   deleteCart,
-  getUserOpenCart,
+  //getUserOpenCart,
   getUserPurchasedCarts,
   getCartById,
   createCart
