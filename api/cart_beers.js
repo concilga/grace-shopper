@@ -3,10 +3,9 @@ const cartBeersRouter = express.Router();
 const {
   addBeerToCart,
   removeBeerFromCart,
-  getSpecificBeerFromCart,
 } = require("../db/export");
 
-cartBeersRouter.post("/:beerId", async (req, res, next) => {
+cartBeersRouter.post("/", async (req, res, next) => {
   try {
     if (!req.user) {
       return next({
@@ -15,15 +14,15 @@ cartBeersRouter.post("/:beerId", async (req, res, next) => {
       });
     }
     const userId = req.user.id;
-    const { beerId } = req.params;
-    const { quantity, price } = req.body;
+    const { beerId, price } = req.body;
     const newCartBeer = await addBeerToCart({
       beerId,
-      quantity,
+      quantity: 1,
       price,
       userId,
     });
 
+    console.log(newCartBeer, "new cart Beer");
     res.send(newCartBeer);
   } catch (error) {
     next(error);
@@ -74,6 +73,7 @@ cartBeersRouter.patch("/:beerId", async (req, res, next) => {
 
     const userId = req.user.id;
     const beerId = req.params.beerId;
+
     const { quantity } = req.body;
     const beer = {
       quantity,

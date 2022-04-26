@@ -36,6 +36,7 @@ body {
   align-items: center;
   flex-wrap: wrap;
   width: 100%;
+  max-height: 90px;
   position: fixed;
   top: 0;
   left: 0;
@@ -44,12 +45,12 @@ body {
 }
 
 .main-navbar > #link_logo {
-  height: 100px;
+  height: 90px;
   margin-left: 50px;
 }
 
 .main-navbar > #link_logo > img {
-  height: 100px;
+  height: 90px;
 }
 
 .main-navbar > #nav {
@@ -220,7 +221,7 @@ body {
 }
 
 .beer-page {
-  margin-top: 100px;
+  margin-top: 80px;
   max-width: 100%;
   display: grid;
   grid-template-columns: 200px 1fr 1fr 200px;
@@ -249,7 +250,7 @@ img {
 .beer_header > h1 {
   font-size: 4rem;
   color: white;
-  text-shadow: black 2px 2px;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   text-align: center;
   max-width: 90%;
 }
@@ -263,11 +264,12 @@ img {
 
 .beer_header > ul > li {
   color: white;
-  text-shadow: black 2px 2px;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   font-size: 1.5rem;
   padding: 10px;
   text-decoration: none;
   border-left: solid;
+  cursor: pointer;
 }
 
 .beer_header > ul > li:hover {
@@ -297,17 +299,21 @@ img {
   font-size: 4rem;
   text-transform: uppercase;
   text-shadow: 1px 1px lightblue;
+  margin-bottom: 50px;
 }
 
 .beer-page > #beers > #beer_card {
   display: flex;
   flex-direction: row;
   text-align: center;
+  max-width: 80%;
+  margin-bottom: 50px;
 }
 
 @media screen and (max-width: 970px) {
   .beer-page > #beers > #beer_card {
     flex-direction: column;
+    max-width: 100%;
   }
 }
 
@@ -316,7 +322,7 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 50px;
+  margin-right: 100px;
 }
 
 #beer_img {
@@ -344,6 +350,7 @@ img {
   text-shadow: 1px 1px lightblue;
   text-decoration: underline;
   margin-bottom: 10px;
+  max-width: 100%;
 }
 
 #beer_info {
@@ -413,35 +420,53 @@ img {
   }
 }
 
-.home-page {
-  background-color: red;
-  font-size: large;
-  display: flex;
-  justify-content: center;
-  margin: 20px;
-  position: fixed;
-  top: 250px;
-}
+/* Ty's CSS for Home Page BELOW */
+
 .homePage {
+  position: absolute;
+  width: 750px;
+  height: 300px;
+  margin: 20% 30%;
+
+  text-align: center;
+  border-radius: 25px;
   background-image: url("bgg.jpg");
-
-  /* background-size: contain; */
-  position: fixed;
-  height: 1080px;
-  width: 1920px;
+  /* opacity: 0.9; */
 }
-
 .homePage h1 {
-  font-size: 35px;
   text-align: center;
-  margin: 25px;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 60px;
+}
+.homePage h1 span {
+  color: #00fecb;
+}
+.homePage a {
+  border: 1px solid #fff;
+  padding: 10px 25px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 14px;
+  margin-bottom: 30px;
+  margin-right: 425px;
+  display: inline-block;
+  color: #fff;
+}
+.homePage a:hover {
+  background: #fff;
+  color: #333;
 }
 
-.homePage h2 {
-  font-size: 25px;
-  text-align: center;
-  margin: 1px;
+.logo {
+  float: left;
+  opacity: 0.9;
 }
+.logo img {
+  width: 100%;
+  padding: 15px 0;
+}
+/*resposive*/
 
 .button1 > #link {
   text-decoration: none;
@@ -503,69 +528,180 @@ img {
   font-size: 5rem;
   margin-bottom: 25px;
   text-align: center;
+  text-transform: uppercase;
 }
 
 #ibeer_info_section {
   color: white;
-  grid-column: 2 / 7;
+  grid-column: 1 / -1;
   grid-row: 4 / 5;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  width: 95%;
+  margin-left: 50px;
 }
 
 #ibeer_info_description {
-  width: 50%;
+  max-width: 50%;
+  min-width: 40%;
   font-size: 1.5rem;
-  text-align: center;
   margin-left: 25px;
 }
 
-/* Ty's CSS for Home Page BELOW */
-
-.homePage {
-  position: absolute;
-  width: 750px;
-  height: 300px;
-  margin: 20% 30%;
-
-  text-align: center;
-  border-radius: 25px;
-  background-image: url("bgg.jpg");
-  /* opacity: 0.9; */
-}
-.homePage h1 {
-  text-align: center;
-  color: #fff;
+#ibeer_info_description > h3 {
+  text-decoration: underline;
   text-transform: uppercase;
-  font-size: 60px;
-}
-.homePage h1 span {
-  color: #00fecb;
-}
-.homePage a {
-  border: 1px solid #fff;
-  padding: 10px 25px;
-  text-decoration: none;
-  text-transform: uppercase;
-  font-size: 14px;
-  margin-bottom: 30px;
-  margin-right: 425px;
-  display: inline-block;
-  color: #fff;
-}
-.homePage a:hover {
-  background: #fff;
-  color: #333;
+  margin-bottom: 5px;
 }
 
-.logo {
-  float: left;
-  opacity: 0.9;
+#ibeer_info_detail {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.8rem;
+  min-width: 35%;
+  max-width: 55%;
 }
-.logo img {
+
+#itop-detail {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   width: 100%;
-  padding: 15px 0;
 }
-/*resposive*/
+
+#iabv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 50%;
+  border-right: solid #ffffff;
+}
+
+#istyle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 50%;
+  margin-left: 5px;
+}
+
+#ibottom-detail {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  border-top: solid #ffffff;
+  margin-top: 5px;
+}
+
+#ibrewery {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 50%;
+  border-right: solid #ffffff;
+}
+
+#iprice {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 50%;
+  margin-left: 5px;
+}
+
+#profile_page{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+#header_backgroung {
+  width: 100%;
+  height: 700px;
+  background-image: url("/images/timothy-dykes-Lq1rOaigDoY-unsplash.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: solid black;
+}
+
+#profile_header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  height: 55%;
+  color: black;
+  /* border: solid black; */
+  padding-inline: 50px;
+}
+
+#profile_photo  > img{
+  width: 300px;
+  height: 350px;
+  border: #15202b;
+  border-radius: 80%;
+}
+
+#profile_welcome {
+  font-size: 3rem;
+  text-shadow: -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff, 1px 1px 0 #ffffff;
+  text-align: center;
+}
+
+#profile_beer_sections {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#profile_beer_card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+  border: solid #15202B;
+  border-radius: 2%;
+}
+
+#profile_beer_img {
+  max-width: 29%;
+  max-height: 70%;
+}
+
+#profile_info_section {
+  max-width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+#profile_brewery_name {
+  margin-bottom: 20px;
+}
+
+#user_score {
+  margin-bottom: 20px;
+  border: solid black;
+  padding: 5px;
+}
+
+#purchase_button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

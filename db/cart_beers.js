@@ -3,7 +3,12 @@ const { getUserOpenCart, createCart } = require("./cart");
 
 async function getCartBeerByUserId(userId) {
   try {
-    let cart = await getUserOpenCart(userId);
+    let { rows: [cart] } = await client.query(
+      `
+        SELECT * FROM carts
+        WHERE "userId"=$1
+        AND "isPurchased"=$2;
+      `, [userId, false]);
 
     if (!cart) {
       throw Error("This User does not have an open cart");
@@ -76,18 +81,20 @@ async function getCartBeersByCartId(cartId) {
 
 async function getSpecificBeerFromCart(beerId, cartId) {
   try {
-    const { rows: [cart_beer] } = await client.query(
+    console.log(beerId, cartId, "specific beer input");
+    const { rows: cart_beer } = await client.query(
       `
             SELECT *
-            FROM cart_beers
+            FROM "cart_beers"
             WHERE "cartId"=$1
             AND "beerId"=$2
           `,
       [cartId, beerId]
     );
 
-    if (!cart_beer) {
-      throw Error("no carts contain a beer with that id");
+    console.log(cart_beer, "getspecificBeer")
+    if (!cart_beer[0]) {
+      return false;
     }
 
     return cart_beer;
@@ -98,7 +105,14 @@ async function getSpecificBeerFromCart(beerId, cartId) {
 
 async function addBeerToCart({ beerId, userId, quantity, price }) {
   try {
-    let cart = await getUserOpenCart(userId);
+    let { rows: [cart] } = await client.query(
+      `
+        SELECT * FROM carts
+        WHERE "userId"=$1
+        AND "isPurchased"=$2;
+      `, [userId, false]);
+
+    console.log(cart, "cartId");
 
     if (!cart) {
       cart = await createCart(userId);
@@ -109,6 +123,13 @@ async function addBeerToCart({ beerId, userId, quantity, price }) {
     }
 
     const cartId = cart.id;
+    const existingBeer = await getSpecificBeerFromCart(cartId, beerId)
+    console.log(existingBeer, "existing beer");
+
+    if(existingBeer) {
+      const newQuantity = existingBeer.quantity + quantity
+      return await changeBeerQuantity(userId, beerId, newQuantity);
+    }
 
     const {
       rows: [cart_beer]
@@ -123,7 +144,7 @@ async function addBeerToCart({ beerId, userId, quantity, price }) {
 
     return cart_beer;
   } catch (error) {
-    throw error;
+    return error;
   }
 }
 
@@ -148,7 +169,12 @@ async function seedCarts({ beerId, cartId, quantity, price }) {
 
 async function removeBeerFromCart({beerId, userId}) {
   try {
-    let cart = await getUserOpenCart(userId);
+    let { rows: [cart] } = await client.query(
+      `
+        SELECT * FROM carts
+        WHERE "userId"=$1
+        AND "isPurchased"=$2;
+      `, [userId, false]);
 
     if (!cart) {
       throw Error("This cart does not exist!");
@@ -177,8 +203,14 @@ async function removeBeerFromCart({beerId, userId}) {
 
 async function changeBeerQuantity({ userId, beerId, quantity }) {
   try {
-    let cart = await getUserOpenCart(userId);
+    let { rows: [cart] } = await client.query(
+      `
+        SELECT * FROM carts
+        WHERE "userId"=$1
+        AND "isPurchased"=$2;
+      `, [userId, false]);
 
+      console.log(cart, "change quantity cart Test");
     if (!cart) {
       throw Error("This cart does not exist!");
     }

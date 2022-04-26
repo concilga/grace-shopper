@@ -56,12 +56,12 @@ const App = () => {
       <Routes>
         <Route exact path="/" element={<Home />} />
 
-        <Route path="/Beer" element={<Beer beers={beers} />} />
+        <Route path="/Beer" element={<Beer beers={beers} token={token} />} />
 
         <Route path="/BeerDetail/:id"
            element={ <BeerDetail beers={beers} token={token} user={user}/> }
         />
-        
+
         <Route
           path="/Login"
           element={<Login token={token} setToken={setToken} />}
