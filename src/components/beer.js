@@ -59,6 +59,7 @@ const Beer = ({ beers, token }) => {
 
             if(!info.id) {
                 setError("There was an error, unable to add Item to your Cart")
+                setDisplayId(beerId);
             }
 
             if(info.id){

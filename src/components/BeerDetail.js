@@ -5,6 +5,7 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 const BeerDetail = ({token, user}) => {  
     const {id} = useParams();
     const [beers, setBeers] = useState([]);
+    const [error, setError] = useState('');
 
     const fetchBeer = async () => {
         const response = await fetch("/api/beer");
@@ -26,6 +27,43 @@ const BeerDetail = ({token, user}) => {
     const individualBeer = beers.filter(
         (beer) => beer.id == id
     );
+
+    async function handleClick(beerId, price) {
+        try {
+            setError('');
+
+            if(!token) {
+                setError("You must be logged in to add an item to your cart!")
+                return;
+            }
+
+            const response = await fetch('/api/cart_beers', {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify(
+                    {
+                        beerId,
+                        price
+                    }
+                )
+            })
+            const info = await response.json();
+            console.log(info);
+
+            if(!info.id) {
+                setError("There was an error, unable to add Item to your Cart")
+            }
+
+            if(info.id){
+                setError("Item was added to your cart!");
+            }
+        } catch(error) {
+            setError(error)
+        }
+    }
     
     return (
         <div id="ibeer_detail_page">
@@ -40,7 +78,7 @@ const BeerDetail = ({token, user}) => {
                     {individualBeer[0].name}
                 </h1>
                 <div id="ibeer_info_btns">
-                    <button className="button1">
+                    <button className="button1" onClick={() => handleClick(individualBeer[0].id, individualBeer[0].price)}>
                         Add To Cart
                     </button>
                     <button className="button1">
@@ -49,6 +87,7 @@ const BeerDetail = ({token, user}) => {
                     <button className="button1">
                         Score
                     </button>
+                    <h2>{error}</h2>
                 </div>
             </div>
             <div id="ibeer_info_section">

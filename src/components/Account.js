@@ -9,6 +9,9 @@ const Account = ({ token, user }) => {
   const { username, profilePic } = user;
   console.log(profilePic);
   const [userBeer, setUserBeer] = useState({});
+  const [error, setError] = useState('');
+  const [displayId, setDisplayId] = useState(null)
+
 
   async function fetchUserBeers() {
     try{
@@ -33,6 +36,45 @@ const Account = ({ token, user }) => {
   useEffect(() => {
     fetchUserBeers();
   }, [token]);
+
+  async function handleClick(beerId, price) {
+    try {
+        setError('');
+
+        if(!token) {
+            setError("You must be logged in to add an item to your cart!")
+            return;
+        }
+
+        const response = await fetch('/api/cart_beers', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(
+                {
+                    beerId,
+                    price
+                }
+            )
+        })
+        const info = await response.json();
+        console.log(info);
+
+        if(!info.id) {
+          setError("There was an error, unable to add Item to your Cart")
+          setDisplayId(beerId);
+        }
+
+        if(info.id){
+            setError("Item was added to your cart!");
+            setDisplayId(beerId);
+        }
+    } catch(error) {
+        setError(error)
+    }
+}
 
   console.log(userBeer, "userBeer");
 
@@ -79,9 +121,16 @@ const Account = ({ token, user }) => {
                     </button>
                   </div>
                   <div id="purchase_button">
-                    <button className="button1">Purchase Again</button>
+                    <button className="button1" onClick={() => handleClick(beer.id, beer.price)}>Purchase Again</button>
                     <button className="button1">Favorite</button>
                     <button className="button1">Score</button>
+                  </div>
+                  <div>
+                    {displayId === beer.id ? (
+                        <h3>{error}</h3> 
+                    ) : (
+                        null
+                    )}
                   </div>
                 </div>
               );
@@ -106,9 +155,16 @@ const Account = ({ token, user }) => {
                     </button>
                   </div>
                   <div id="purchase_button">
-                    <button className="button1">Add To Cart</button>
+                    <button className="button1" onClick={() => handleClick(beer.id, beer.price)}>Add To Cart</button>
                     <button className="button1">Un-Favorite</button>
                     <button className="button1">Score</button>
+                  </div>
+                  <div>
+                    {displayId === beer.id ? (
+                        <h3>{error}</h3> 
+                    ) : (
+                        null
+                    )}
                   </div>
                 </div>
               );
@@ -137,9 +193,16 @@ const Account = ({ token, user }) => {
                     </button>
                   </div>
                   <div id="purchase_button">
-                    <button className="button1">Add To Cart</button>
+                    <button className="button1" onClick={() => handleClick(beer.id, beer.price)}>Add To Cart</button>
                     <button className="button1">Favorite</button>
                     <button className="button1">Change Score</button>
+                  </div>
+                  <div>
+                    {displayId === beer.id ? (
+                        <h3>{error}</h3> 
+                    ) : (
+                        null
+                    )}
                   </div>
                 </div>
               );

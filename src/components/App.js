@@ -75,9 +75,9 @@ const App = () => {
           element={ <Register token={token} setToken={setToken}/> }
         />
 
-      {/* <Route path="/Cart"
-        element={ <Cart/> }
-      />   */}
+      <Route path="/Cart"
+        element={ <Cart token={token}/> }
+      />  
     </Routes>
     </>
   );

@@ -81,19 +81,15 @@ async function getCartBeersByCartId(cartId) {
 
 async function getSpecificBeerFromCart(beerId, cartId) {
   try {
-    console.log(beerId, cartId, "specific beer input");
-    const { rows: cart_beer } = await client.query(
+    const { rows: [cart_beer] } = await client.query(
       `
-            SELECT *
-            FROM "cart_beers"
-            WHERE "cartId"=$1
-            AND "beerId"=$2
-          `,
-      [cartId, beerId]
+        SELECT * FROM "cart_beers"
+        WHERE "cartId"=${cartId}
+        AND "beerId"=${beerId}; 
+      `
     );
 
-    console.log(cart_beer, "getspecificBeer")
-    if (!cart_beer[0]) {
+    if (!cart_beer) {
       return false;
     }
 
@@ -112,7 +108,6 @@ async function addBeerToCart({ beerId, userId, quantity, price }) {
         AND "isPurchased"=$2;
       `, [userId, false]);
 
-    console.log(cart, "cartId");
 
     if (!cart) {
       cart = await createCart(userId);
@@ -123,12 +118,11 @@ async function addBeerToCart({ beerId, userId, quantity, price }) {
     }
 
     const cartId = cart.id;
-    const existingBeer = await getSpecificBeerFromCart(cartId, beerId)
-    console.log(existingBeer, "existing beer");
+    const existingBeer = await getSpecificBeerFromCart(beerId, cartId)
 
     if(existingBeer) {
-      const newQuantity = existingBeer.quantity + quantity
-      return await changeBeerQuantity(userId, beerId, newQuantity);
+      const newQuantity = existingBeer.quantity + 1;
+      return await changeBeerQuantity({userId, beerId, newQuantity});
     }
 
     const {
@@ -201,16 +195,16 @@ async function removeBeerFromCart({beerId, userId}) {
   }
 }
 
-async function changeBeerQuantity({ userId, beerId, quantity }) {
+async function changeBeerQuantity({ userId, beerId, newQuantity }) {
   try {
+    console.log(userId, beerId, newQuantity)
     let { rows: [cart] } = await client.query(
       `
         SELECT * FROM carts
-        WHERE "userId"=$1
-        AND "isPurchased"=$2;
-      `, [userId, false]);
+        WHERE "userId"=${userId}
+        AND "isPurchased"=${false};
+      `);
 
-      console.log(cart, "change quantity cart Test");
     if (!cart) {
       throw Error("This cart does not exist!");
     }
@@ -222,12 +216,12 @@ async function changeBeerQuantity({ userId, beerId, quantity }) {
     } = await client.query(
       `
         UPDATE cart_beers
-        SET quantity=$1,
+        SET quantity=$1
         WHERE "beerId"=$2
         AND "cartId"=$3
         RETURNING *;
         `,
-      [quantity, beerId, cartId]
+      [newQuantity, beerId, cartId]
     );
 
     return cart_beer;
