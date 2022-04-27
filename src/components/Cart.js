@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const Cart = () => {
+const Cart = ({ token }) => {
   const [userCart, setUserCart] = useState([]);
 
   async function fetchCartBeers() {
@@ -27,9 +27,9 @@ const Cart = () => {
 
   //Use the Cart.js via api for the requests on buttons.
 
-  async function removeBeerFromCart(beerId, userId) {
+  async function removeBeerFromCart(beerId) {
     const response = await fetch(`/api/cart_beers/${beerId}`, {
-      method: "PATCH",
+      method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -54,16 +54,13 @@ const Cart = () => {
     console.log(info);
   }
 
-  if (isEmpty) return <h1 className="cart-text">Your Cart is Empty</h1>;
-  //fetch requesti
-
   return (
     <section className="cart-container">
       <div className="COL-3">
-        <h5>Cart Total Items: ({quanity}) </h5>
+        {/* <h5>Cart Total Items: ({quanity}) </h5> */}
         <table className="table">
           <tbody>
-            {beerId.map((userId) => {
+            {userCart.map((cartItem) => {
               return (
                 <tr key={userId}>
                   <td>

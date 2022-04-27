@@ -22,7 +22,6 @@ cartBeersRouter.post("/", async (req, res, next) => {
       userId,
     });
 
-    console.log(newCartBeer, "new cart Beer");
     res.send(newCartBeer);
   } catch (error) {
     next(error);
