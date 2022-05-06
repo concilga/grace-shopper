@@ -12,6 +12,7 @@ const {
     getUserByUsername,
     createUser
   } = require("../db/export");
+const react = require("react");
   
   usersRouter.get("/me", async (req, res, next) => {
     try {
@@ -33,22 +34,24 @@ const {
   
     // request must have both
     if (!username || !password) {
-      next({
+      res.status(401);
+      throw{
         name: "MissingCredentialsError",
         message: "Please supply both a username and password",
-      });
+      };
     }
   
     try {
       const user = await getUserByUsername(username);
       
       if(!user) {
-        res.send({
+        res.status(401);
+        throw{
           name: "MissingCredentialsError",
           message: "Please supply a correct username",
-        });
+        };
       }
-
+      
       const token = jwt.sign(
         { id: user.id, username: user.username },
         process.env.JWT_SECRET
@@ -65,13 +68,14 @@ const {
           token: token,
         });
       } else {
-        next({
+        res.status(401);
+        throw{
           name: "IncorrectCredentialsError",
           message: "Username or password is incorrect",
-        });
+        };
       }
     } catch (error) {
-      next(error);
+      res.send(error);
     }
   });
   

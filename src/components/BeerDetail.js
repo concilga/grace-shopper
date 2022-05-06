@@ -64,6 +64,15 @@ const BeerDetail = ({token, user}) => {
             setError(error)
         }
     }
+
+    async function handleFavClick() {
+        setError("Beer Was Added to your Favorites!") 
+    }
+
+    async function handleScoreClick(e) {
+        setError("Beer Was Added to your Scored!");
+        e.preventDefault();
+    }
     
     return (
         <div id="ibeer_detail_page">
@@ -81,14 +90,18 @@ const BeerDetail = ({token, user}) => {
                     <button className="button1" onClick={() => handleClick(individualBeer[0].id, individualBeer[0].price)}>
                         Add To Cart
                     </button>
-                    <button className="button1">
+                    <button className="button1" onClick={() => handleFavClick()}>
                         Favorite
                     </button>
-                    <button className="button1">
-                        Score
-                    </button>
-                    <h2>{error}</h2>
+                    <form>
+                        <input required type='text' name='username'/>
+                        <button className="button1" onClick={(e) => handleScoreClick(e.target)}>
+                            Score
+                        </button>
+                    </form>
+ 
                 </div>
+                <h2>{error}</h2>
             </div>
             <div id="ibeer_info_section">
                 <div id="ibeer_info_description">

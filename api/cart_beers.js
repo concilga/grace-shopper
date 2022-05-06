@@ -3,6 +3,9 @@ const cartBeersRouter = express.Router();
 const {
   addBeerToCart,
   removeBeerFromCart,
+  getBeerById,
+  getCartBeerByUserId,
+  changeBeerQuantity
 } = require("../db/export");
 
 cartBeersRouter.post("/", async (req, res, next) => {
@@ -47,17 +50,32 @@ cartBeersRouter.delete("/:beerId", async (req, res, next) => {
 
 cartBeersRouter.get("/", async (req, res) => {
   try {
+    
     if (!req.user) {
-      return next({
+      res.send({
         name: "userVerificationError",
         message: "Only a logged in user can get a cart beer!",
       });
     }
-    const { userId } = req.user.id;
-    const beer = await getCartBeerByUserId(userId);
-    res.send(beer);
+    
+    const userId = req.user.id;
+    const cartbeers = await getCartBeerByUserId(userId);
+    console.log(cartbeers, "get request test 1");
+    let beers = []
+
+    for(let i = 0; i < cartbeers.length; i++){
+      beers.push({
+        beer: await getBeerById(cartbeers[i].beerId),
+        quantity: cartbeers[i].quantity,
+        price: cartbeers[i].price,
+        cartId: cartbeers[i].cartId
+      })
+    }
+
+    console.log(beers);
+    res.send(beers);
   } catch (error) {
-    next(error);
+    res.send(error);
   }
 });
 
@@ -75,7 +93,7 @@ cartBeersRouter.patch("/:beerId", async (req, res, next) => {
 
     const { quantity } = req.body;
     const beer = {
-      quantity,
+      newQuantity: quantity,
       beerId,
       userId,
     };

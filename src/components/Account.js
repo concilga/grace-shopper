@@ -76,16 +76,17 @@ const Account = ({ token, user }) => {
     }
 }
 
-  console.log(userBeer, "userBeer");
+async function handleFavClick(beerId) {
+  setDisplayId(beerId);
+  setError("Beer Was Added to your Favorites!") 
+}
 
-  // const userBeer = {
-  //   favorite: [
-  //     {
-  //       image: "working beer img",
-  //       name: "working beer name",
-  //     },
-  //   ],
-  // };
+async function handleScoreClick(beerId) {
+  setDisplayId(beerId);
+  setError("Beer Was Added to your Scored!");
+}
+
+
   if(!userBeer || !userBeer.purchased) {
     return(<>
     </>)
@@ -122,8 +123,15 @@ const Account = ({ token, user }) => {
                   </div>
                   <div id="purchase_button">
                     <button className="button1" onClick={() => handleClick(beer.id, beer.price)}>Purchase Again</button>
-                    <button className="button1">Favorite</button>
-                    <button className="button1">Score</button>
+                    <button className="button1" onClick={() => handleFavClick(beer.id)}>
+                        Favorite
+                    </button>
+                    <form>
+                        <input required type='text' name='username'/>
+                        <button className="button1" onClick={() => handleScoreClick(beer.id)}>
+                            Score
+                        </button>
+                    </form>
                   </div>
                   <div>
                     {displayId === beer.id ? (
@@ -135,7 +143,13 @@ const Account = ({ token, user }) => {
                 </div>
               );
             })
-          : null}
+          : <div id="empty-message">
+              <h1 >You have not purchased any beers yet!!!</h1>
+              <p>Hit the button below to explore our amazing selection of beers!</p>
+              <button className="button1">
+                <Link id="link" to="/Beer">Explore</Link>
+              </button>
+            </div>}
       </div>
       {/* <hr></hr> */}
       <div id="profile_beer_sections">
@@ -156,8 +170,15 @@ const Account = ({ token, user }) => {
                   </div>
                   <div id="purchase_button">
                     <button className="button1" onClick={() => handleClick(beer.id, beer.price)}>Add To Cart</button>
-                    <button className="button1">Un-Favorite</button>
-                    <button className="button1">Score</button>
+                    <button className="button1" onClick={() => handleFavClick(beer.id)}>
+                        Un-Favorite
+                    </button>
+                    <form>
+                        <input required type='text' name='username'/>
+                        <button className="button1" onClick={() => handleScoreClick(beer.id)}>
+                            Score
+                        </button>
+                    </form>
                   </div>
                   <div>
                     {displayId === beer.id ? (
@@ -169,7 +190,13 @@ const Account = ({ token, user }) => {
                 </div>
               );
             })
-          : null}
+          : <div id="empty-message">
+              <h1 >You have not favorited any beers yet!!!</h1>
+              <p>Hit the button below to explore our amazing selection of beers!</p>
+              <button className="button1">
+                <Link id="link" to="/Beer">Explore</Link>
+              </button>
+            </div>}
       </div>
       {/* <hr></hr> */}
       <div id="profile_beer_sections">
@@ -194,8 +221,15 @@ const Account = ({ token, user }) => {
                   </div>
                   <div id="purchase_button">
                     <button className="button1" onClick={() => handleClick(beer.id, beer.price)}>Add To Cart</button>
-                    <button className="button1">Favorite</button>
-                    <button className="button1">Change Score</button>
+                    <button className="button1" onClick={() => handleFavClick(beer.id)}>
+                        Favorite
+                    </button>
+                    <form>
+                        <input required type='text' name='username'/>
+                        <button className="button1" onClick={() => handleScoreClick(beer.id)}>
+                            Score
+                        </button>
+                    </form>
                   </div>
                   <div>
                     {displayId === beer.id ? (
@@ -207,7 +241,14 @@ const Account = ({ token, user }) => {
                 </div>
               );
             })
-          : null}
+            
+          : <div id="empty-message">
+              <h1 >You have not scored any beers yet!!!</h1>
+              <p>Hit the button below to explore our amazing selection of beers!</p>
+              <button className="button1">
+                <Link id="link" to="/Beer">Explore</Link>
+              </button>
+            </div>}
       </div>
     </div>
   );

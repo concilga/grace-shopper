@@ -38,6 +38,7 @@ const Beer = ({ beers, token }) => {
 
             if(!token) {
                 setError("You must be logged in to add an item to your cart!")
+                setDisplayId(beerId);
                 return;
             }
 
