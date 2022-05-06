@@ -76,7 +76,7 @@ const App = () => {
         />
 
       <Route path="/Cart"
-        element={ <Cart token={token}/> }
+        element={ <Cart token={token} user={user}/> }
       />  
     </Routes>
     </>

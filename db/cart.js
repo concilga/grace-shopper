@@ -4,6 +4,7 @@ const { deleteBeersbyCartId } = require("./cart_beers");
 /* */
 async function createCart({ userId, isPurchased }) {
   try {
+    console.log("create cart start woring!")
     const {
       rows: [cart],
     } = await client.query(
@@ -110,7 +111,6 @@ async function purchaseCart(cartId) {
 module.exports = {
   purchaseCart,
   deleteCart,
-  //getUserOpenCart,
   getUserPurchasedCarts,
   getCartById,
   createCart

@@ -31,7 +31,6 @@ async function editUserBeer({userId, beerId, favorite, score}) {
         FROM user_beers
         WHERE "userId"=$1
         AND "beerId"=$2
-        RETURNING *
       `[userId, beerId]
     );
 

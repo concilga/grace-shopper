@@ -15,11 +15,12 @@ const Register = ({setToken}) => {
     }
 
     const  handleRegister = async(event) => {
+      try{
         event.preventDefault();
         setError("");
 
         if(password !== confirmPassword) {
-            setError("Your password do not match!")
+            setError("Your passwords do not match!")
             return;
         }
 
@@ -34,8 +35,8 @@ const Register = ({setToken}) => {
             }),
         });
         const info = await response.json();
-        console.log(info);
-        if(info.error) {
+        
+        if(info.name) {
             return setError(info.message)
         }
 
@@ -43,6 +44,9 @@ const Register = ({setToken}) => {
         localStorage.setItem("token", info.token);
 
         history("/");
+      } catch(error) {
+        setError(error);
+      }
     }
   
     const handleSubmit = (event) => {
@@ -56,7 +60,7 @@ const Register = ({setToken}) => {
     return (
       <div id='container'>
         <div id='login-navbar'>
-          Register:
+          Please Register Below:
         </div >
         <div className="login-form">
           <form onSubmit={handleSubmit}>
@@ -67,7 +71,7 @@ const Register = ({setToken}) => {
             <label htmlFor='confirm_password'>Confirm Password:</label>
             <input required type='password' name='confirm_password' value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} />
             <p>{error}</p>
-            <button type='submit' className='button-19'>Submit</button>
+            <button type='submit' className='button1'>Submit</button>
           </form>
         </div>
       </div>

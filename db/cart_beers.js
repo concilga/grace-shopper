@@ -1,14 +1,15 @@
+const { use } = require("bcrypt/promises");
 const client = require(".");
-const { getUserOpenCart, createCart } = require("./cart");
+const { createCart } = require("./cart");
 
 async function getCartBeerByUserId(userId) {
   try {
     let { rows: [cart] } = await client.query(
       `
         SELECT * FROM carts
-        WHERE "userId"=$1
-        AND "isPurchased"=$2;
-      `, [userId, false]);
+        WHERE "userId"=${userId}
+        AND "isPurchased"=${false};
+      `);
 
     if (!cart) {
       throw Error("This User does not have an open cart");
@@ -17,7 +18,7 @@ async function getCartBeerByUserId(userId) {
     const cartId = cart.id;
 
     const {
-      rows: [cart_beers],
+      rows: cart_beers,
     } = await client.query(
       `
         SELECT *
@@ -33,7 +34,7 @@ async function getCartBeerByUserId(userId) {
 
     return cart_beers;
   } catch (error) {
-    throw error;
+    console.log(error);
   }
 }
 
@@ -104,15 +105,22 @@ async function addBeerToCart({ beerId, userId, quantity, price }) {
     let { rows: [cart] } = await client.query(
       `
         SELECT * FROM carts
-        WHERE "userId"=$1
-        AND "isPurchased"=$2;
-      `, [userId, false]);
-
+        WHERE "userId"=${userId}
+        AND "isPurchased"=${false};
+      `);
 
     if (!cart) {
-      cart = await createCart(userId);
+      console.log("if working")
+      cart = await client.query(
+        `
+          INSERT INTO carts("userId", "isPurchased")
+          VALUES($1, $2)
+          RETURNING *;
+        `,
+        [userId, false]
+      );
     }
-
+    
     if(!cart) {
       throw Error("Error Creating Cart");
     }
@@ -138,7 +146,7 @@ async function addBeerToCart({ beerId, userId, quantity, price }) {
 
     return cart_beer;
   } catch (error) {
-    return error;
+    console.log(error);
   }
 }
 
@@ -166,9 +174,9 @@ async function removeBeerFromCart({beerId, userId}) {
     let { rows: [cart] } = await client.query(
       `
         SELECT * FROM carts
-        WHERE "userId"=$1
-        AND "isPurchased"=$2;
-      `, [userId, false]);
+        WHERE "userId"=${userId}
+        AND "isPurchased"=${false};
+      `);
 
     if (!cart) {
       throw Error("This cart does not exist!");

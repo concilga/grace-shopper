@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Link, useNavigate } from 'react-router-dom';
 const Login = ({setToken}) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [checkLogin, setCheckLogin] = useState('')
+    const [checkLogin, setCheckLogin] = useState('');
 
     const history = useNavigate();
   
@@ -14,7 +14,8 @@ const Login = ({setToken}) => {
     }
 
     const handleLogin = async(event) => {
-        event.preventDefault();
+      event.preventDefault();
+      try{
         setCheckLogin("");
 
         const response = await fetch('/api/users/login', {
@@ -37,6 +38,9 @@ const Login = ({setToken}) => {
         localStorage.setItem("token", info.token);
 
         history("/");
+      } catch(error){
+        setCheckLogin(error)
+      }
     }
   
     const handleSubmit = (event) => {
@@ -49,7 +53,7 @@ const Login = ({setToken}) => {
     return (
       <div id='container'>
         <div id='login-navbar'>
-          Login:
+         Please Login Below:
         </div >
         <div className="login-form"> 
           <form onSubmit={handleSubmit}>
